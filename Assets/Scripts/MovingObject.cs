@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,6 +13,8 @@ namespace Assets.Scripts
 
         Rigidbody2D rb;
 
+        Stopwatch timer;
+
         private void Start()
         {
             rb = GetComponent<Rigidbody2D>();
@@ -19,7 +22,27 @@ namespace Assets.Scripts
 
         private void Update()
         {
+            if (CanMove())
+            {
+                // move it
+            }
+        }
 
+        public void OnSpot()
+        {
+            UnityEngine.Debug.Log("Spotted");
+            //timer.Stop();
+            //timer.Reset();
+        }
+
+        public void OnUnspot()
+        {
+            //timer.Restart();
+        }
+
+        bool CanMove()
+        {
+            return false;
         }
 
 
