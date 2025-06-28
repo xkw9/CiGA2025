@@ -15,7 +15,7 @@ namespace Assets.Scripts
         [SerializeField]
         float sleepingTime = 5;
         [SerializeField]
-        float movingSpeed = 3;
+        float movingSpeed = 8;
         
         Rigidbody2D rb;
         ObjectPathSeeker pathSeeker;
@@ -112,7 +112,7 @@ namespace Assets.Scripts
                 }
             } else
             {
-                rb.velocity = (curTarget.toVec3() - transform.position).toVec2().normalized * movingSpeed;
+                rb.AddForce((curTarget.toVec3() - transform.position).toVec2().normalized * movingSpeed);
             }
         }
 
