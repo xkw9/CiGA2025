@@ -36,9 +36,11 @@ namespace Assets.Scripts
                 Debug.Log("addFinishObject: tag " + tag + " level: "+ currentLevel+ " has "+ finishObjMap[currentLevel].Count+" done");
                 if (finishObjMap[currentLevel].Count == finishObjNeedMap[currentLevel]){
                     Debug.Log("win!");
+                    GameManager.AudioManager.PlaySFX("drop_right_short");
                     for (int i = 0; i < movingObjList.Count; i++)
                     {
-                        // movingObjList[i].Done();
+                        movingObjList[i].Done();
+                        Debug.Log(movingObjList[i].objName+" done!");
                     }
                 }
             }
@@ -63,11 +65,10 @@ namespace Assets.Scripts
             player = GameObject.FindObjectOfType<Player>();
             GameObject[] taggedObjects = GameObject.FindGameObjectsWithTag("MovingObject");
             // 转换为 MovingObject 类型的数组
-            List<MovingObject> movingObjects = new();
 
             for (int i = 0; i < taggedObjects.Length; i++)
             {
-                movingObjects.Add(taggedObjects[i].GetComponent<MovingObject>());
+                movingObjList.Add(taggedObjects[i].GetComponent<MovingObject>());
             }
             finishObjMap[1] = new();
             finishObjNeedMap[1] = 2;

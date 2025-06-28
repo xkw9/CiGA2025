@@ -60,7 +60,7 @@ public class OriginLocation : MonoBehaviour
                 GameManager.removeFinishObject(objName, obj);
                 Debug.Log($"exit {objName} 的触发区域");
             }
-            
+
         }
     }
 
