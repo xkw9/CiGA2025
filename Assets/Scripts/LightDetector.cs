@@ -36,15 +36,28 @@ namespace Assets.Scripts
                 Vector2 dir = rightDir.rotate(i * Config.PLAYER_SPOT_ANGLE / 20); 
                 var result = Physics2D.RaycastAll(transform.position, dir, Config.PLAYER_SPOT_DISTANCE);
 
-                if (result.Length <= 1) continue;   // first object is player
-
-                if (result[1].collider.gameObject.CompareTag(Config.LAYER_MOVING_OBJECT))
+                foreach (var rayhit in result)
                 {
-                    // spot a object
-                    Debug.DrawRay(transform.position, dir, Color.red);
-                    result[1].collider.GetComponent<MovingObject>().OnSpot();
-                }
+                    var col = rayhit.collider;
+                    if (col == null) continue;
+                    if (col.CompareTag(Config.TAG_PLAYER))
+                    {
+                        continue;
+                    } else if (col.CompareTag(Config.TAG_MOVING_OBJECT))
+                    {
+                        // spot a object
+                        Debug.DrawRay(transform.position, dir, Color.red);
+                        col.GetComponent<MovingObject>()?.OnSpot();
+
+                        break;
+                    } else
+                    {
+                        break;
+                    }
+                } 
             }
+
+
         }
 
     }

@@ -11,6 +11,6 @@ public static class Config
 
     public static readonly float PLAYER_SPOT_DISTANCE = 8f;
 
-    public static readonly string LAYER_MOVING_OBJECT = "MovingObject";
-
+    public static readonly string TAG_MOVING_OBJECT = "MovingObject";
+    public static readonly string TAG_PLAYER = "Player";
 }

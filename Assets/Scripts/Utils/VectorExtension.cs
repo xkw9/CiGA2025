@@ -14,6 +14,11 @@ namespace Assets.Scripts.Utils
             return new Vector2(vector3.x, vector3.y);
         }
 
+        public static Vector3 toVec3(this Vector2 vector2, float z = 0)
+        {
+            return new Vector3(vector2.x, vector2.y, 0);
+        }
+
         public static Vector2 rotate(this Vector2 v, float degrees)
         {
             float radians = degrees * Mathf.Deg2Rad;
