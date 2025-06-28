@@ -47,8 +47,10 @@ public class OriginLocation : MonoBehaviour
     
     // 离开触发区域
     void OnTriggerExit2D(Collider2D other) {
-        MovingObject obj = other.GetComponent<MovingObject>();
-        if (obj != null){
+        var obj = other.GetComponentInParent<MovingObject>();
+        if (obj != null && (obj.state == MovingObject.ObjectState.PICKED_UP
+                || obj.state == MovingObject.ObjectState.ALIVE))
+        {
             string objName = obj.objName;
             if (targetSqTag == obj.objName){
                 Debug.Log($"命中 {obj.objName} exit");
@@ -56,7 +58,7 @@ public class OriginLocation : MonoBehaviour
                 GameManager.removeFinishObject(objName, obj);
                 Debug.Log($"exit {objName} 的触发区域");
             }
-            
+
         }
     }
 

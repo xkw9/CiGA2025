@@ -42,7 +42,12 @@ namespace Assets.Scripts
 
         private void Update()
         {
-
+            UnityEngine.Debug.Log("Update state:" + state);
+            if (state == ObjectState.DONE)
+            {
+                // never move if Done
+                return;
+            }
             if (state == ObjectState.ALIVE)
             {
                 if (!isMoving)
@@ -95,6 +100,10 @@ namespace Assets.Scripts
 
         public void OnSpot()
         {
+            if (state == ObjectState.DONE)
+            {
+                return;
+            }
             countdownText.Hide();
             timeLastSeen = Time.time;
             spotted = true;
@@ -137,9 +146,13 @@ namespace Assets.Scripts
 
         public void PickUp(Player player)
         {
+            if (state == ObjectState.PICKED_UP)
+            {
+                return;
+            }
             UnityEngine.Debug.Log("Picked up object: " + gameObject.name);
 
-            GameManager.AudioManager.PlaySFX("ui_start");
+            GameManager.AudioManager.PlaySFX("carry_short");
 
             rb.bodyType = RigidbodyType2D.Dynamic;
             rb.velocity = Vector2.zero;
@@ -157,6 +170,7 @@ namespace Assets.Scripts
             state = ObjectState.SLEEPING;
             timeLastSeen = Time.time;
             if (atTargetLocation){
+                GameManager.AudioManager.PlaySFX("drop_short");
                 GameManager.addFinishObject(objName, this);
             }
             Destroy(GetComponent<FixedJoint2D>());
