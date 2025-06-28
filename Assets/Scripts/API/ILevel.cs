@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
+using UnityEngine;
 
 namespace Assets.Scripts.API
 {
@@ -13,9 +13,13 @@ namespace Assets.Scripts.API
 
         public OriginLocation GetDestination(MovingObject obj);
 
-        void LoadLevel(int level);
+        public void LoadLevel(int level, List<MovingObject> movingObjList, List<OriginLocation> originLocationList);
 
-        void Win();
+        public void Win();
+
+        public void addFinishObject(string tag, MovingObject obj);
+
+        public void removeFinishObject(string tag, MovingObject obj);
 
     }
 }

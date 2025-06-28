@@ -6,7 +6,9 @@ public class OriginLocation : MonoBehaviour
 {
     [SerializeField]
     string targetSqTag = "";
-
+    [SerializeField]
+    int level = 0;
+    
     Collider2D col;
     // Start is called before the first frame update
     void Start()

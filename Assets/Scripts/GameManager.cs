@@ -1,5 +1,6 @@
 ﻿using Assets.Audio;
 using Assets.Utils;
+using Assets.Scripts.API;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,39 +22,24 @@ namespace Assets.Scripts
 
         public static Light2D globalLight;
 
-        static Dictionary< int , ConcurrentDictionary< string , int > > finishObjMap = new();
+        static Dictionary< int , ILevel > levelMap = new();
         static Dictionary< int , int > finishObjNeedMap = new Dictionary< int , int >();
-        static List<MovingObject> movingObjList = new();
         public static int currentLevel = 1;
                 
         public static void addFinishObject(string tag, MovingObject obj){
             // Debug.Log("addFinishObject: " + tag);
-            if(finishObjMap.ContainsKey(currentLevel))
+
+            if(levelMap.ContainsKey(currentLevel))
             {
-                if(!finishObjMap[currentLevel].TryGetValue(tag, out int value)){
-                    finishObjMap[currentLevel].TryAdd(tag,0);
-                }
-                Debug.Log("addFinishObject: tag " + tag + " level: "+ currentLevel+ " has "+ finishObjMap[currentLevel].Count+" done");
-                if (finishObjMap[currentLevel].Count == finishObjNeedMap[currentLevel]){
-                    Debug.Log("win!");
-                    GameManager.AudioManager.PlaySFX("drop_right_short");
-                    for (int i = 0; i < movingObjList.Count; i++)
-                    {
-                        movingObjList[i].Done();
-                        Debug.Log(movingObjList[i].objName+" done!");
-                    }
-                }
+                levelMap[currentLevel].addFinishObject(tag,obj);
             }
         }
 
         public static void removeFinishObject(string tag, MovingObject obj){
             // Debug.Log("removeFinishObject: " + tag);
-            if(finishObjMap.ContainsKey(currentLevel))
+            if(levelMap.ContainsKey(currentLevel))
             {
-                if(finishObjMap[currentLevel].ContainsKey(tag)){
-                    finishObjMap[currentLevel].TryRemove(tag, out _);
-                }
-                Debug.Log("removeFinishObject: tag " + tag + " level: "+ currentLevel+ " has "+ finishObjMap[currentLevel].Count+" done");
+                levelMap[currentLevel].removeFinishObject(tag,obj);
             }
         }
 
@@ -63,15 +49,23 @@ namespace Assets.Scripts
             Debug.Log("loading new game!");
 
             player = GameObject.FindObjectOfType<Player>();
-            GameObject[] taggedObjects = GameObject.FindGameObjectsWithTag("MovingObject");
-            // 转换为 MovingObject 类型的数组
-
-            for (int i = 0; i < taggedObjects.Length; i++)
+            List<MovingObject> movingObjList = new();
+            GameObject[] movingObjects = GameObject.FindGameObjectsWithTag("MovingObject");
+            for (int i = 0; i < movingObjects.Length; i++)
             {
-                movingObjList.Add(taggedObjects[i].GetComponent<MovingObject>());
+                movingObjList.Add(movingObjects[i].GetComponent<MovingObject>());
             }
-            finishObjMap[1] = new();
+            List<OriginLocation> originLocationList = new();
+            GameObject[] originLocationObjects = GameObject.FindGameObjectsWithTag("OriginLocation");
+            for (int i = 0; i < originLocationObjects.Length; i++)
+            {
+                originLocationList.Add(originLocationObjects[i].GetComponent<OriginLocation>());
+            }
+            // levelMap[1] = new();
             finishObjNeedMap[1] = 2;
+            ILevel newLevel = new Level();
+            newLevel.LoadLevel(1, movingObjList, originLocationList);
+            levelMap[1] = newLevel;
             AudioManager = UnityUtils.MakeObject<AudioManager>("AudioManager");
 
             globalLight = GameObject.Find("Global Light").GetComponent<Light2D>();

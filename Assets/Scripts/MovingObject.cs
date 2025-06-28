@@ -17,6 +17,8 @@ namespace Assets.Scripts
         [SerializeField]
         float movingSpeed = 8;
         [SerializeField]
+        int level = 0;
+        [SerializeField]
         public string objName = "";
         public bool atTargetLocation = false;
         Rigidbody2D rb;
