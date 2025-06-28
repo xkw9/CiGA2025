@@ -13,4 +13,6 @@ public static class Config
 
     public static readonly string TAG_MOVING_OBJECT = "MovingObject";
     public static readonly string TAG_PLAYER = "Player";
+
+    public static readonly string COUNTDOWN_TEXT_PREFAB = "Prefabs/CountDownText";
 }

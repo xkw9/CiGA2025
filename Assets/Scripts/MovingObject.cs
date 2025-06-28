@@ -20,6 +20,8 @@ namespace Assets.Scripts
         Rigidbody2D rb;
         ObjectPathSeeker pathSeeker;
 
+        CountdownText countdownText;
+
         float timeLastSeen = 0;
         public ObjectState state = ObjectState.SLEEPING;
 
@@ -27,6 +29,7 @@ namespace Assets.Scripts
         {
             rb = GetComponent<Rigidbody2D>();
             pathSeeker = GetComponentInChildren<ObjectPathSeeker>();
+            countdownText = CountdownText.makeText(this);
         }
 
         private void Update()
@@ -43,6 +46,23 @@ namespace Assets.Scripts
                 state = ObjectState.SEEKING_PATH;
                 pathSeeker.StartSeekingPath();
             }
+
+            if (state == ObjectState.SLEEPING)
+            {
+                float rstTime = sleepingTime - (Time.time - timeLastSeen);
+
+                if (rstTime > 0.1 && rstTime <= 4)
+                {
+                    countdownText.gameObject.SetActive(true);
+                    countdownText.SetText(Math.Round(rstTime, 1).ToString());
+                } else
+                {
+                    countdownText.gameObject.SetActive(false);
+                }
+
+            }
+
+            
         }
 
         public void OnSpot()
