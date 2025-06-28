@@ -12,6 +12,8 @@ namespace Assets.Scripts
     {
         static List<string> eyes = new() { "-", "o", "O" };
 
+        static List<string> wakingFaces = new() { "OvO", "OwO", "OAO", "O3O" };
+
         int leftLv = 0, rightLv = 0;
         int lv;
 
@@ -65,6 +67,11 @@ namespace Assets.Scripts
         public bool Waked()
         {
             return leftLv >= eyes.Count - 1 && rightLv >= eyes.Count - 1;
+        }
+
+        public static string getRandomWakingFace()
+        {
+            return wakingFaces[Random.Range(0, wakingFaces.Count)];
         }
 
         public int TotalStages => eyes.Count * 2;

@@ -1,4 +1,5 @@
-﻿using Pathfinding;
+﻿using Assets.Scripts.Utils;
+using Pathfinding;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,12 +31,30 @@ namespace Assets.Scripts
             seeker = GetComponent<Seeker>();
         }
 
+        Vector2 GetValidTarget()
+        {
+            Vector2 guess;
+            //Vector2 dst = GameManager.Level.GetDestination(movingObject).transform.position.toVec2();
+            while (true)
+            {
+                guess = new Vector2(UnityEngine.Random.Range(-10, 10), UnityEngine.Random.Range(-10, 10));
+                break;
+                // dont make the target too close to player or origin point
+                //if ((guess - GameManager.player.transform.position.toVec2()).sqrMagnitude > Config.CLOSEST_DIS_TO_PLAYER_SQR
+                //    && (guess - dst).sqrMagnitude > Config.CLOSEST_DIS_TO_TARGET_SQR))
+                //{
+                //    break;
+                //}
+
+            }
+
+            return guess;
+        }
 
         public void StartSeekingPath()
         {
             // summon a random target point
-            target = new Vector2(UnityEngine.Random.Range(-10, 10), UnityEngine.Random.Range(-10, 10));
-
+            target = GetValidTarget();
             // create a path
             seeker.StartPath(transform.position, target, OnPathComplete);
         }

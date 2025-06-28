@@ -14,6 +14,11 @@ public static class Config
     public static readonly float OBJECT_WAKE_TIME = 4;
     public static readonly float OBJECT_MOVE_TIME = 5;
 
+    public static readonly float WIN_DURARION = 3f;
+
+    public static readonly float CLOSEST_DIS_TO_PLAYER_SQR = 25f;
+    public static readonly float CLOSEST_DIS_TO_TARGET_SQR = 25f;
+
     public static readonly string TAG_MOVING_OBJECT = "MovingObject";
     public static readonly string TAG_PLAYER = "Player";
 

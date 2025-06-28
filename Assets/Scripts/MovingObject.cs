@@ -20,6 +20,10 @@ namespace Assets.Scripts
         int level = 0;
         [SerializeField]
         public string objName = "";
+
+        [SerializeField]
+        protected Color textColor;
+
         public bool atTargetLocation = false;
         Rigidbody2D rb;
         ObjectPathSeeker pathSeeker;
@@ -35,14 +39,19 @@ namespace Assets.Scripts
 
         FaceManager faceManager = new();
 
-        private void Start()
+        protected virtual void Awake()
         {
-            rb = GetComponent<Rigidbody2D>();
-            pathSeeker = GetComponentInChildren<ObjectPathSeeker>();
             countdownText = CountdownText.makeText(gameObject);
         }
 
-        private void Update()
+        protected virtual void Start()
+        {
+            rb = GetComponent<Rigidbody2D>();
+            pathSeeker = GetComponentInChildren<ObjectPathSeeker>();
+            countdownText.SetColor(textColor);
+        }
+
+        protected virtual void Update()
         {
             UnityEngine.Debug.Log("Update state:" + state);
             if (state == ObjectState.DONE)
@@ -54,13 +63,12 @@ namespace Assets.Scripts
             {
                 if (!isMoving)
                 {
+                    UpdateFace(-1);
                     isMoving = true;
                     timeStartMove = Time.time;
                 }
 
                 Move();
-                countdownText.Show();
-                countdownText.SetText("OAO");
             }
             else if (CheckCanMove() && state == ObjectState.SLEEPING)
             {
@@ -87,8 +95,14 @@ namespace Assets.Scripts
             
         }
 
-        public void UpdateFace(float rstTime)
+        public virtual void UpdateFace(float rstTime)
         {
+            if (rstTime < 0)
+            {
+                countdownText.SetText(FaceManager.getRandomWakingFace());
+                return;
+            }
+
             float timeOne = Config.OBJECT_WAKE_TIME / faceManager.TotalStages - 0.01f;
             if (faceManager.TotalStages - rstTime / timeOne - 1 > faceManager.curStages)
             {
