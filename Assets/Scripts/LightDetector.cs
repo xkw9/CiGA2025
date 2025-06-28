@@ -24,6 +24,13 @@ namespace Assets.Scripts
 
         private void Update()
         {
+            if (GameManager.isTransitioning)
+            {
+                detectedObjects.Clear();
+                newDetectedObjects.Clear();
+                return;
+            }
+
             Check();   
         }
 
@@ -64,7 +71,7 @@ namespace Assets.Scripts
 
             foreach (var obj in detectedObjects)
             {
-                if (!newDetectedObjects.Contains(obj))
+                if (obj != null && !newDetectedObjects.Contains(obj))
                 {
                     // object is no longer detected
                     obj.OnUnspot();

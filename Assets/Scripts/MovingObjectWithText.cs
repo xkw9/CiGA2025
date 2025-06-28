@@ -41,6 +41,12 @@ namespace Assets.Scripts
             }
         }
 
+        protected override void OnDestroy()
+        {
+            base.OnDestroy();
+            Destroy(text.gameObject);
+        }
+
         public override void UpdateFace(float rstTime)
         {
             // DO NOTHING

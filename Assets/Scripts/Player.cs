@@ -34,7 +34,9 @@ public class Player : MonoBehaviour
         leftEye = CountdownText.makeText(gameObject);
         rightEye = CountdownText.makeText(gameObject);
         leftEye.SetText("o");
+        leftEye.SetColor(Color.cyan);
         rightEye.SetText("o");
+        rightEye.SetColor(Color.cyan);
     }
 
     // Update is called once per frame

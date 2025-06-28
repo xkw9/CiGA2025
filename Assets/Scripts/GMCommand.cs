@@ -21,5 +21,11 @@ namespace Assets.Scripts
         {
             GameManager.LightOff();
         }
+
+        [MenuItem("Debug/NextLevel")]
+        public static void NextLevel()
+        {
+            GameManager.Win();
+        }
     }
 }

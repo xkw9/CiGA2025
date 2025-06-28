@@ -95,6 +95,14 @@ namespace Assets.Scripts
             
         }
 
+        protected virtual void OnDestroy()
+        {
+            if (countdownText.gameObject != null)
+            {
+                Destroy(countdownText.gameObject);
+            }
+        }
+
         public virtual void UpdateFace(float rstTime)
         {
             if (rstTime < 0)

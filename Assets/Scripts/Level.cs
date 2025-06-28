@@ -70,6 +70,21 @@ namespace Assets
                 movingObjList[i].Done();
                 Debug.Log(movingObjList[i].objName+" done!");
             }
+
+            foreach (var originLocation in originLocationList)
+            {
+                originLocation.gameObject.SetActive(false);
+            }
+
+            GameManager.LightOn();
+            GoToNextLevel();
+        }
+
+        public async void GoToNextLevel()
+        {
+            await Task.Delay(3000);
+            GameManager.LightOff();
+            GameManager.LoadNextLevel();
         }
     }
 }

@@ -1,15 +1,9 @@
 ﻿using Assets.Audio;
 using Assets.Utils;
 using Assets.Scripts.API;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UnityEngine;
-using System.Collections.Concurrent;
 using UnityEngine.Rendering.Universal;
-using Assets.Scripts.API;
 
 namespace Assets.Scripts
 {
@@ -24,10 +18,15 @@ namespace Assets.Scripts
 
         static Dictionary< int , ILevel > levelMap = new();
         static Dictionary< int , int > finishObjNeedMap = new Dictionary< int , int >();
-        public static int currentLevel = 1;
+        public static int currentLevel = 0;
 
+        public static GameObject levelObj;
         public static ILevel level; 
-        public static ILevelProgressUI levelProgressUI;   
+        public static ILevelProgressUI levelProgressUI;
+
+        public static AstarPath aStarPath;
+
+        public static bool isTransitioning = false;
         public static void addFinishObject(string tag, MovingObject obj){
             // Debug.Log("addFinishObject: " + tag);
 
@@ -52,6 +51,36 @@ namespace Assets.Scripts
 
             player = GameObject.FindObjectOfType<Player>();
             levelProgressUI = GameObject.FindObjectOfType<LevelProgressUI>();
+            AudioManager = UnityUtils.MakeObject<AudioManager>("AudioManager");
+            globalLight = GameObject.Find("Global Light").GetComponent<Light2D>();
+            aStarPath = GameObject.FindObjectOfType<AstarPath>();
+
+            LoadNextLevel();
+
+        }
+
+        public static void LoadNextLevel()
+        {
+
+            currentLevel++;
+
+            if (levelObj != null)
+            {
+                GameObject.Destroy(levelObj);
+            }
+
+            var levelObjPrefab = Resources.Load<GameObject>("Prefabs/Level" + currentLevel);
+
+            if (levelObjPrefab == null)
+            {
+                Debug.LogError("Level prefab not found for level: " + currentLevel);
+                return;
+            }
+
+            levelObj = GameObject.Instantiate(levelObjPrefab);
+
+            aStarPath.Scan();
+
             List<MovingObject> movingObjList = new();
             GameObject[] movingObjects = GameObject.FindGameObjectsWithTag("MovingObject");
             for (int i = 0; i < movingObjects.Length; i++)
@@ -65,14 +94,12 @@ namespace Assets.Scripts
                 originLocationList.Add(originLocationObjects[i].GetComponent<OriginLocation>());
             }
             // levelMap[1] = new();
-            finishObjNeedMap[1] = 2;
+            finishObjNeedMap[currentLevel] = originLocationList.Count;
             ILevel newLevel = new Level();
             newLevel.LoadLevel(1, movingObjList, originLocationList);
-            levelMap[1] = newLevel;
-            AudioManager = UnityUtils.MakeObject<AudioManager>("AudioManager");
+            levelMap[currentLevel] = newLevel;
 
-            globalLight = GameObject.Find("Global Light").GetComponent<Light2D>();
-
+            isTransitioning = false;
         }
 
         public static void LightOn()
@@ -90,8 +117,10 @@ namespace Assets.Scripts
         }
         
         public static void Win(){
+
             if(levelMap.ContainsKey(currentLevel))
             {
+                isTransitioning = true;
                 levelMap[currentLevel].Win();
             }
         }

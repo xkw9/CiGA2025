@@ -46,6 +46,7 @@ namespace Assets.Scripts
 
         private void OnTriggerExit2D(Collider2D collision)
         {
+            if (collision.gameObject == null) { return; }
             if (collision.gameObject.tag != Config.TAG_MOVING_OBJECT) { return; }
             
             var obj = collision.GetComponent<MovingObject>();
