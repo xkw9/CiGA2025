@@ -16,7 +16,9 @@ namespace Assets.Scripts
         float sleepingTime = 5;
         [SerializeField]
         float movingSpeed = 8;
-        
+        [SerializeField]
+        public string objName = "";
+        public bool atTargetLocation = false;
         Rigidbody2D rb;
         ObjectPathSeeker pathSeeker;
 
@@ -88,7 +90,11 @@ namespace Assets.Scripts
                 // never move if picked up
                 return false;
             }
-
+            if (state == ObjectState.DONE)
+            {
+                // never move if Done
+                return false;
+            }
             return Time.time - timeLastSeen > sleepingTime;
         }
 
@@ -111,9 +117,18 @@ namespace Assets.Scripts
             rb.bodyType = RigidbodyType2D.Static;
             state = ObjectState.SLEEPING;
             timeLastSeen = Time.time;
-            
+            if (atTargetLocation){
+                GameManager.addFinishObject(objName, this);
+            }
             Destroy(GetComponent<FixedJoint2D>());
 
+        }
+
+        public void Done()
+        {
+            UnityEngine.Debug.Log(objName + " before Done: " + state);
+            state = ObjectState.DONE;
+            UnityEngine.Debug.Log(objName + " Done: " + state);
         }
 
         public void Move()
@@ -150,6 +165,7 @@ namespace Assets.Scripts
             SEEKING_PATH,
             ALIVE,
             PICKED_UP,
+            DONE,
         }
 
     }

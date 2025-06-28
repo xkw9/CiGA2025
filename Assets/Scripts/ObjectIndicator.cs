@@ -25,7 +25,11 @@ namespace Assets.Scripts
             if (movingObject.state == MovingObject.ObjectState.PICKED_UP)
             {
                 SpriteResolver.SetCategoryAndLabel("New Category", "Carried");
-            } else
+            } else if (movingObject.state == MovingObject.ObjectState.DONE)
+            {
+                SpriteResolver.SetCategoryAndLabel("New Category", "Check");
+            } 
+            else
             {
                 SpriteResolver.SetCategoryAndLabel("New Category", "None");
             }
