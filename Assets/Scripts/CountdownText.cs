@@ -33,6 +33,17 @@ namespace Assets.Scripts
             tmp.text = txt;
         }
 
+        public void Show()
+        {
+            transform.position = obj.transform.position;
+            gameObject.SetActive(true);
+        }
+
+        public void Hide()
+        {
+            gameObject.SetActive(false);
+        }
+
         public static CountdownText makeText(MovingObject obj)
         {
             var textPrefab = Resources.Load(Config.COUNTDOWN_TEXT_PREFAB);

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 
@@ -13,6 +14,8 @@ namespace Assets.Scripts
     {
 
         Light2D light2d;
+        List<MovingObject> detectedObjects = new();
+        List<MovingObject> newDetectedObjects = new();
 
         private void Start()
         {
@@ -26,6 +29,7 @@ namespace Assets.Scripts
 
         void Check()
         {
+
             Vector2 facingDir = Vector2.Perpendicular(transform.right);
 
             Vector2 rightDir = facingDir.rotate(-Config.PLAYER_SPOT_ANGLE / 2);
@@ -46,8 +50,9 @@ namespace Assets.Scripts
                     } else if (col.CompareTag(Config.TAG_MOVING_OBJECT))
                     {
                         // spot a object
-                        Debug.DrawRay(transform.position, dir, Color.red);
-                        col.GetComponent<MovingObject>()?.OnSpot();
+                        var obj = col.GetComponent<MovingObject>();
+                        obj.OnSpot();
+                        newDetectedObjects.Add(obj);
 
                         break;
                     } else
@@ -57,6 +62,18 @@ namespace Assets.Scripts
                 } 
             }
 
+            foreach (var obj in detectedObjects)
+            {
+                if (!newDetectedObjects.Contains(obj))
+                {
+                    // object is no longer detected
+                    obj.OnUnspot();
+                }
+            }
+
+            detectedObjects.Clear();
+            detectedObjects.AddRange(newDetectedObjects);
+            newDetectedObjects.Clear();
 
         }
 
