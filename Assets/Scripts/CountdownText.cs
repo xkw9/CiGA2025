@@ -20,7 +20,7 @@ namespace Assets.Scripts
         [SerializeField]
         GameObject obj;
 
-        private void Start()
+        private void Awake()
         {
 
             tmp = GetComponent<TextMeshProUGUI>();
@@ -34,6 +34,11 @@ namespace Assets.Scripts
         public void SetText(string txt)
         {
             tmp.text = txt;
+        }
+
+        public void SetColor(Color color)
+        {
+            tmp.color = color;
         }
 
         public void Show()

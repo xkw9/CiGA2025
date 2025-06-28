@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using UnityEngine;
 using System.Collections.Concurrent;
 using UnityEngine.Rendering.Universal;
-
+using Assets.Scripts.API;
 
 namespace Assets.Scripts
 {
@@ -25,6 +25,8 @@ namespace Assets.Scripts
         static Dictionary< int , int > finishObjNeedMap = new Dictionary< int , int >();
         static List<MovingObject> movingObjList = new();
         public static int currentLevel = 1;
+
+        public static ILevel Level; 
                 
         public static void addFinishObject(string tag, MovingObject obj){
             // Debug.Log("addFinishObject: " + tag);
