@@ -32,11 +32,12 @@ namespace Assets.Scripts
         {
             countdownText = GameObject.Find("countdownText").GetComponent<TextMeshProUGUI>();
             objPlacedText = GameObject.Find("objPlacedText").GetComponent<TextMeshProUGUI>();
-            Debug.Log("test countdownText: " + countdownText);
-            Debug.Log("test objPlacedText: " + objPlacedText);
+            
+            //Debug.Log("test countdownText: " + countdownText);
+            //Debug.Log("test objPlacedText: " + objPlacedText);
 
-            // countdownText.gameObject.SetActive(false);
-            // objPlacedText.gameObject.SetActive(false);
+            countdownText.gameObject.SetActive(false);
+            objPlacedText.gameObject.SetActive(false);
         }
 
         public void LoadLevelInfo(int level, int amountNeed)

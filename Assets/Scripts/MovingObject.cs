@@ -187,7 +187,6 @@ namespace Assets.Scripts
             timeLastSeen = Time.time;
             if (atTargetLocation){
                 GameManager.AudioManager.PlaySFX("drop_short");
-                GameManager.addFinishObject(objName, this);
             }
             Destroy(GetComponent<FixedJoint2D>());
 

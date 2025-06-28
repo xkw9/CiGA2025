@@ -29,7 +29,7 @@ public class OriginLocation : MonoBehaviour
             string objName = obj.objName;
             if (targetSqTag == obj.objName){
                 obj.atTargetLocation = true;
-                // GameManager.addFinishObject(objName, obj);
+                GameManager.addFinishObject(objName, obj);
                 Debug.Log($"enter {objName} 的触发区域");
             }
         }

@@ -37,7 +37,7 @@ namespace Assets.Scripts
             //Vector2 dst = GameManager.Level.GetDestination(movingObject).transform.position.toVec2();
             while (true)
             {
-                guess = new Vector2(UnityEngine.Random.Range(-10, 10), UnityEngine.Random.Range(-10, 10));
+                guess = new Vector2(UnityEngine.Random.Range(-25, 25), UnityEngine.Random.Range(-15, 15));
                 break;
                 // dont make the target too close to player or origin point
                 //if ((guess - GameManager.player.transform.position.toVec2()).sqrMagnitude > Config.CLOSEST_DIS_TO_PLAYER_SQR
