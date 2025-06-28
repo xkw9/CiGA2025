@@ -489,7 +489,7 @@ MonoBehaviour:
   sleepingTime: 3
   movingSpeed: 8
   level: 0
-  objName: 
+  objName: goal_2
   textColor: {r: 0.3372549, g: 0.33333334, b: 0.9960785, a: 1}
   atTargetLocation: 0
   state: 0
