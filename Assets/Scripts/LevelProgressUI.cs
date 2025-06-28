@@ -28,21 +28,25 @@ namespace Assets.Scripts
 
         Coroutine WinChecker;
 
-        void Start()
+        void Awake()
         {
             countdownText = GameObject.Find("countdownText").GetComponent<TextMeshProUGUI>();
             objPlacedText = GameObject.Find("objPlacedText").GetComponent<TextMeshProUGUI>();
+            Debug.Log("test countdownText: " + countdownText);
+            Debug.Log("test objPlacedText: " + objPlacedText);
 
-            countdownText.gameObject.SetActive(false);
-            objPlacedText.gameObject.SetActive(false);
+            // countdownText.gameObject.SetActive(false);
+            // objPlacedText.gameObject.SetActive(false);
         }
 
         public void LoadLevelInfo(int level, int amountNeed)
         {
+            Debug.Log("test LoadLevelInfo: " + "level: "+ level + "amountNeed: " + amountNeed);
             this.level = level;
             this.amountNeed = amountNeed;
 
-
+            objPlacedText.gameObject.SetActive(true);
+            RefreshCurAmount(0);
         }
 
         public void RefreshCurAmount(int amount)
@@ -88,7 +92,7 @@ namespace Assets.Scripts
             isCounting = false;
             countdownText.gameObject.SetActive(false);
             WinChecker = null;
-            GameManager.Level.Win();
+            GameManager.Win();
         }
 
     }

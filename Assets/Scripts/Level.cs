@@ -30,15 +30,17 @@ namespace Assets
             this.movingObjList = movingObjList;
             this.originLocationList = originLocationList;
             this.finishObjNeed = originLocationList.Count;
+            GameManager.levelProgressUI.LoadLevelInfo(this.currentLevel, this.finishObjNeed);
         }   
         public void addFinishObject(string tag, MovingObject obj){
             // Debug.Log("addFinishObject: " + tag);
             if(!finishObjMap.TryGetValue(tag, out int value)){
                 finishObjMap.TryAdd(tag,0);
+                GameManager.levelProgressUI.RefreshCurAmount(finishObjMap.Count);
             }
             Debug.Log("addFinishObject: tag " + tag + " level: "+ currentLevel+ " has "+ finishObjMap.Count+" done");
             if (checkIfWin()){
-                Win();
+                GameManager.levelProgressUI.startCountDown(5);
             }
         }
 
@@ -55,6 +57,7 @@ namespace Assets
             // Debug.Log("removeFinishObject: " + tag);
             if(finishObjMap.ContainsKey(tag)){
                 finishObjMap.TryRemove(tag, out _);
+                GameManager.levelProgressUI.RefreshCurAmount(finishObjMap.Count);
             }
             Debug.Log("removeFinishObject: tag " + tag + " level: "+ currentLevel+ " has "+ finishObjMap.Count+" done");
         }

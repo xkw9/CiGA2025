@@ -26,8 +26,8 @@ namespace Assets.Scripts
         static Dictionary< int , int > finishObjNeedMap = new Dictionary< int , int >();
         public static int currentLevel = 1;
 
-        public static ILevel Level; 
-                
+        public static ILevel level; 
+        public static ILevelProgressUI levelProgressUI;   
         public static void addFinishObject(string tag, MovingObject obj){
             // Debug.Log("addFinishObject: " + tag);
 
@@ -51,6 +51,7 @@ namespace Assets.Scripts
             Debug.Log("loading new game!");
 
             player = GameObject.FindObjectOfType<Player>();
+            levelProgressUI = GameObject.FindObjectOfType<LevelProgressUI>();
             List<MovingObject> movingObjList = new();
             GameObject[] movingObjects = GameObject.FindGameObjectsWithTag("MovingObject");
             for (int i = 0; i < movingObjects.Length; i++)
@@ -87,6 +88,12 @@ namespace Assets.Scripts
             globalLight.intensity = 0f;
             player.GetComponentInChildren<Light2D>().intensity = 1f;
         }
-
+        
+        public static void Win(){
+            if(levelMap.ContainsKey(currentLevel))
+            {
+                levelMap[currentLevel].Win();
+            }
+        }
     }
 }
