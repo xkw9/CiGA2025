@@ -37,7 +37,7 @@ namespace Assets.Scripts
         {
             rb = GetComponent<Rigidbody2D>();
             pathSeeker = GetComponentInChildren<ObjectPathSeeker>();
-            countdownText = CountdownText.makeText(this);
+            countdownText = CountdownText.makeText(gameObject);
         }
 
         private void Update()

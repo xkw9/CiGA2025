@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Assets.Scripts.Utils;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,8 +15,10 @@ namespace Assets.Scripts
 
         TextMeshProUGUI tmp;
 
+        Vector2 offset = Vector2.zero;
+
         [SerializeField]
-        MovingObject obj;
+        GameObject obj;
 
         private void Start()
         {
@@ -25,7 +28,7 @@ namespace Assets.Scripts
 
         private void Update()
         {
-            transform.position = obj.transform.position; 
+            transform.position = obj.transform.position + offset.toVec3(); 
         }
 
         public void SetText(string txt)
@@ -35,7 +38,7 @@ namespace Assets.Scripts
 
         public void Show()
         {
-            transform.position = obj.transform.position;
+            transform.position = obj.transform.position + offset.toVec3();
             gameObject.SetActive(true);
         }
 
@@ -44,7 +47,12 @@ namespace Assets.Scripts
             gameObject.SetActive(false);
         }
 
-        public static CountdownText makeText(MovingObject obj)
+        public void SetOffset(Vector2 offset)
+        {
+            this.offset = offset;
+        }
+
+        public static CountdownText makeText(GameObject obj)
         {
             var textPrefab = Resources.Load(Config.COUNTDOWN_TEXT_PREFAB);
 

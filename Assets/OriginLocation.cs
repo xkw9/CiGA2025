@@ -6,10 +6,12 @@ public class OriginLocation : MonoBehaviour
 {
     [SerializeField]
     string targetSqTag = "";
+
+    Collider2D col;
     // Start is called before the first frame update
     void Start()
     {
-        
+        col = GetComponent<Collider2D>();
     }
 
     // Update is called once per frame
@@ -47,8 +49,10 @@ public class OriginLocation : MonoBehaviour
     
     // 离开触发区域
     void OnTriggerExit2D(Collider2D other) {
-        MovingObject obj = other.GetComponent<MovingObject>();
-        if (obj != null){
+        var obj = other.GetComponentInParent<MovingObject>();
+        if (obj != null && (obj.state == MovingObject.ObjectState.PICKED_UP
+                || obj.state == MovingObject.ObjectState.ALIVE))
+        {
             string objName = obj.objName;
             if (targetSqTag == obj.objName){
                 Debug.Log($"命中 {obj.objName} exit");

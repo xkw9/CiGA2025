@@ -15,6 +15,13 @@ public class Player : MonoBehaviour
 
     MovingObject objCarried;
 
+    CountdownText leftEye, rightEye;
+
+    static Vector2 leftEyeOffset = new Vector2(-0.2f, 0);
+    static Vector2 rightEyeOffset = new Vector2(0.2f, 0);
+
+    static float eyeRadius = 0.1f;
+
     PlayerState state;
 
     // Start is called before the first frame update
@@ -23,6 +30,11 @@ public class Player : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         light2d = GetComponentInChildren<Light2D>();
         objDetector = GetComponentInChildren<ObjectDetector>();
+
+        leftEye = CountdownText.makeText(gameObject);
+        rightEye = CountdownText.makeText(gameObject);
+        leftEye.SetText("o");
+        rightEye.SetText("o");
     }
 
     // Update is called once per frame
@@ -49,6 +61,14 @@ public class Player : MonoBehaviour
         Vector3.Angle(playerToMouse, Vector2.up);
 
         light2d.transform.rotation = Quaternion.Euler(0, 0, 180 + Vector2.SignedAngle(Vector2.up, playerToMouse));
+
+        // rotate eyes
+
+        Vector2 leftEyeCenterToMouse = playerToMouse - leftEyeOffset;
+        Vector2 rightEyeCenterToMouse = playerToMouse - rightEyeOffset;
+
+        leftEye.SetOffset(leftEyeOffset - leftEyeCenterToMouse.normalized * eyeRadius);
+        rightEye.SetOffset(rightEyeOffset - rightEyeCenterToMouse.normalized * eyeRadius);
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
