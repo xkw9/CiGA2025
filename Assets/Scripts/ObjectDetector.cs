@@ -42,12 +42,15 @@ namespace Assets.Scripts
 
             var obj = collision.GetComponent<MovingObject>();
             obj.OnSpot();
-        }
+        }   
 
         private void OnTriggerExit2D(Collider2D collision)
         {
             if (collision.gameObject.tag != Config.TAG_MOVING_OBJECT) { return; }
-            obj_inRange.Remove(collision.GetComponent<MovingObject>());    
+            
+            var obj = collision.GetComponent<MovingObject>();
+            obj.OnUnspot();
+            obj_inRange.Remove(obj);    
         }
     }
 }

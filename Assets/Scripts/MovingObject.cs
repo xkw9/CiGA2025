@@ -25,7 +25,13 @@ namespace Assets.Scripts
         CountdownText countdownText;
 
         float timeLastSeen = 0;
+        float timeStartMove = 0;
         public ObjectState state = ObjectState.SLEEPING;
+
+        public bool spotted = false;
+        public bool isMoving = false;
+
+        FaceManager faceManager = new();
 
         private void Start()
         {
@@ -39,9 +45,17 @@ namespace Assets.Scripts
 
             if (state == ObjectState.ALIVE)
             {
+                if (!isMoving)
+                {
+                    isMoving = true;
+                    timeStartMove = Time.time;
+                }
+
                 Move();
+                countdownText.Show();
+                countdownText.SetText("OAO");
             }
-            else if (CanMove() && state == ObjectState.SLEEPING)
+            else if (CheckCanMove() && state == ObjectState.SLEEPING)
             {
                 // move it
                 UnityEngine.Debug.Log("Object " + name + " Start seeking path");
@@ -49,17 +63,16 @@ namespace Assets.Scripts
                 pathSeeker.StartSeekingPath();
             }
 
-            if (state == ObjectState.SLEEPING)
+            if (state == ObjectState.SLEEPING && !spotted)
             {
                 float rstTime = sleepingTime - (Time.time - timeLastSeen);
 
-                if (rstTime > 0.1 && rstTime <= 4)
+                if (rstTime <= Config.OBJECT_WAKE_TIME)
                 {
-                    countdownText.gameObject.SetActive(true);
-                    countdownText.SetText(Math.Round(rstTime, 1).ToString());
+                    UpdateFace(rstTime);
                 } else
                 {
-                    countdownText.gameObject.SetActive(false);
+                    countdownText.Hide();
                 }
 
             }
@@ -67,9 +80,27 @@ namespace Assets.Scripts
             
         }
 
+        public void UpdateFace(float rstTime)
+        {
+            float timeOne = Config.OBJECT_WAKE_TIME / faceManager.TotalStages - 0.01f;
+            if (faceManager.TotalStages - rstTime / timeOne - 1 > faceManager.curStages)
+            {
+                faceManager.Wake();
+            }
+
+            countdownText.Show();
+            countdownText.SetText(faceManager.getFace());
+        
+        }
+
         public void OnSpot()
         {
+            countdownText.Hide();
             timeLastSeen = Time.time;
+            spotted = true;
+            isMoving = false;
+            
+            faceManager.Reset();
 
             if (state == ObjectState.PICKED_UP)
             {
@@ -82,8 +113,14 @@ namespace Assets.Scripts
             
         }
 
+        public void OnUnspot()
+        {
+            spotted = false;
+            UnityEngine.Debug.Log("Unspotted " + name);
+        }
 
-        bool CanMove()
+
+        bool CheckCanMove()
         {
             if (state == ObjectState.PICKED_UP)
             {
@@ -101,6 +138,8 @@ namespace Assets.Scripts
         public void PickUp(Player player)
         {
             UnityEngine.Debug.Log("Picked up object: " + gameObject.name);
+
+            GameManager.AudioManager.PlaySFX("ui_start");
 
             rb.bodyType = RigidbodyType2D.Dynamic;
             rb.velocity = Vector2.zero;
@@ -134,6 +173,17 @@ namespace Assets.Scripts
         public void Move()
         {
             rb.bodyType = RigidbodyType2D.Dynamic; // make sure we can move
+
+            if (Time.time - timeStartMove > Config.OBJECT_MOVE_TIME)
+            {
+                // move time is over, seek another path
+                Freeze();
+                UnityEngine.Debug.Log("Object " + name + " Start seeking path");
+                state = ObjectState.SEEKING_PATH;
+                pathSeeker.StartSeekingPath();
+                return;
+            }
+
             var curTarget = pathSeeker.GetCurWaypoint(transform);
             if (curTarget != null && Vector2.Distance(transform.position, curTarget) < 0.1f)
             {
@@ -144,6 +194,10 @@ namespace Assets.Scripts
                 {
                     // reached the end of the path
                     Freeze();
+                    UnityEngine.Debug.Log("Object " + name + " Start seeking path");
+                    state = ObjectState.SEEKING_PATH;
+                    pathSeeker.StartSeekingPath();
+                    return;
                 }
             } else
             {
@@ -153,7 +207,7 @@ namespace Assets.Scripts
 
         public void Freeze()
         {
-            timeLastSeen = Time.time;
+            isMoving = false;
             state = ObjectState.SLEEPING;
             rb.bodyType = RigidbodyType2D.Static; // stop moving
 

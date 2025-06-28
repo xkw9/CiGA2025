@@ -34,7 +34,7 @@ namespace Assets.Scripts
         public void StartSeekingPath()
         {
             // summon a random target point
-            //target = new Vector2(UnityEngine.Random.Range(-10, 10), UnityEngine.Random.Range(-10, 10));
+            target = new Vector2(UnityEngine.Random.Range(-10, 10), UnityEngine.Random.Range(-10, 10));
 
             // create a path
             seeker.StartPath(transform.position, target, OnPathComplete);

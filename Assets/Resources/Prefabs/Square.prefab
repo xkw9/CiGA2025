@@ -86,6 +86,7 @@ GameObject:
   - component: {fileID: 7221561997592765768}
   - component: {fileID: 8323229770617282237}
   - component: {fileID: 6928639913222193251}
+  - component: {fileID: 1032523131848100417}
   m_Layer: 0
   m_Name: Indicator
   m_TagString: Untagged
@@ -202,6 +203,18 @@ MonoBehaviour:
   m_labelHash: 0.0127253095
   m_SpriteKey: 0
   m_SpriteHash: 933666806
+--- !u!114 &1032523131848100417
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5159357263093380625}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2de0d78148bf744d9321ff40a71a61f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7679536663604043772
 GameObject:
   m_ObjectHideFlags: 0
@@ -215,6 +228,7 @@ GameObject:
   - component: {fileID: 6975478210808083228}
   - component: {fileID: 7497206666177344089}
   - component: {fileID: 4499379899987836783}
+  - component: {fileID: 2278448585166573343}
   m_Layer: 0
   m_Name: Square
   m_TagString: MovingObject
@@ -351,6 +365,7 @@ MonoBehaviour:
   sleepingTime: 2
   movingSpeed: 3
   state: 0
+  spotted: 0
 --- !u!50 &4499379899987836783
 Rigidbody2D:
   serializedVersion: 4
@@ -377,4 +392,34 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
+--- !u!114 &2278448585166573343
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7679536663604043772}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7db70e0ea77f5ac47a8f4565a9406397, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ShadowGroup: 0
+  m_ComponentVersion: 1
+  m_HasRenderer: 1
+  m_UseRendererSilhouette: 1
+  m_CastsShadows: 1
+  m_SelfShadows: 0
+  m_ApplyToSortingLayers: 00000000
+  m_ShapePath:
+  - {x: -0.5, y: -0.5, z: 0}
+  - {x: -0.5, y: 0.5, z: 0}
+  - {x: 0.5, y: 0.5, z: 0}
+  - {x: 0.5, y: -0.5, z: 0}
+  m_ShapePathHash: 0
+  m_Mesh: {fileID: 0}
+  m_InstanceId: -577186
+  m_LocalBounds:
+    m_Center: {x: 0, y: 0, z: 0}
+    m_Extent: {x: 0.5, y: 0.5, z: 0}

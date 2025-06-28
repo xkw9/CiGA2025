@@ -1,10 +1,14 @@
-﻿using System;
+﻿using Assets.Audio;
+using Assets.Utils;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 using System.Collections.Concurrent;
+using UnityEngine.Rendering.Universal;
+
 
 namespace Assets.Scripts
 {
@@ -12,11 +16,16 @@ namespace Assets.Scripts
     {
 
         public static Player player;
+
+        public static AudioManager AudioManager;
+
+        public static Light2D globalLight;
+
         static Dictionary< int , ConcurrentDictionary< string , int > > finishObjMap = new();
         static Dictionary< int , int > finishObjNeedMap = new Dictionary< int , int >();
         static List<MovingObject> movingObjList = new();
         public static int currentLevel = 1;
-        
+                
         public static void addFinishObject(string tag, MovingObject obj){
             // Debug.Log("addFinishObject: " + tag);
             if(finishObjMap.ContainsKey(currentLevel))
@@ -62,6 +71,24 @@ namespace Assets.Scripts
             }
             finishObjMap[1] = new();
             finishObjNeedMap[1] = 2;
+            AudioManager = UnityUtils.MakeObject<AudioManager>("AudioManager");
+
+            globalLight = GameObject.Find("Global Light").GetComponent<Light2D>();
+
+        }
+
+        public static void LightOn()
+        {
+            AudioManager.PlaySFX("switch");
+            globalLight.intensity = 0.5f;
+            player.GetComponentInChildren<Light2D>().intensity = 0f;
+        }
+
+        public static void LightOff()
+        {
+            AudioManager.PlaySFX("switch");
+            globalLight.intensity = 0f;
+            player.GetComponentInChildren<Light2D>().intensity = 1f;
         }
 
     }
