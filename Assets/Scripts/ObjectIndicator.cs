@@ -21,18 +21,25 @@ namespace Assets.Scripts
 
         private void Update()
         {
-            
-            if (movingObject.state == MovingObject.ObjectState.PICKED_UP)
+
+            if (movingObject.state == MovingObject.ObjectState.DONE)
             {
-                SpriteResolver.SetCategoryAndLabel("New Category", "Carried");
-            } else if (movingObject.atTargetLocation)
+                SpriteResolver.SetCategoryAndLabel("New Category", "None");
+            }
+
+            if (movingObject.atTargetLocation)
             {
                 SpriteResolver.SetCategoryAndLabel("New Category", "Check");
+            } else if (movingObject.state == MovingObject.ObjectState.PICKED_UP)
+            {
+                SpriteResolver.SetCategoryAndLabel("New Category", "Carried");
             } 
             else
             {
                 SpriteResolver.SetCategoryAndLabel("New Category", "None");
             }
+
+            transform.rotation = Quaternion.Euler(0, 0, 0); // Reset rotation to avoid rotation issues
         }
 
     }

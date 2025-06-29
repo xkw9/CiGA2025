@@ -24,6 +24,7 @@ namespace Assets.Scripts
 
         private void Update()
         {
+
             if (GameManager.isTransitioning)
             {
                 detectedObjects.Clear();
@@ -42,9 +43,9 @@ namespace Assets.Scripts
             Vector2 rightDir = facingDir.rotate(-Config.PLAYER_SPOT_ANGLE / 2);
 
 
-            for (int i = 0; i < 20; i++)
+            for (int i = 0; i < 30; i++)
             {
-                Vector2 dir = rightDir.rotate(i * Config.PLAYER_SPOT_ANGLE / 20); 
+                Vector2 dir = rightDir.rotate(i * Config.PLAYER_SPOT_ANGLE / 30); 
                 var result = Physics2D.RaycastAll(transform.position, dir, Config.PLAYER_SPOT_DISTANCE);
 
                 foreach (var rayhit in result)
@@ -82,6 +83,21 @@ namespace Assets.Scripts
             detectedObjects.AddRange(newDetectedObjects);
             newDetectedObjects.Clear();
 
+        }
+
+        public void OnDisable()
+        {
+            foreach (var obj in detectedObjects)
+            {
+                if (obj != null)
+                {
+                    obj.OnUnspot();
+                }
+            }
+
+            detectedObjects.Clear();
+            newDetectedObjects.Clear();
+        
         }
 
     }

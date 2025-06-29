@@ -15,5 +15,10 @@ namespace Assets.Scripts
             GameManager.Init();
         }
 
+        private void Start()
+        {
+            GameManager.ShowFirstScreen();
+        }
+
     }
 }

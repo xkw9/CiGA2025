@@ -4,6 +4,7 @@ using Assets.Scripts.API;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
+using System.Threading.Tasks;
 
 namespace Assets.Scripts
 {
@@ -27,6 +28,7 @@ namespace Assets.Scripts
         public static AstarPath aStarPath;
 
         public static bool isTransitioning = false;
+        public static bool lightOn = true;
         public static void addFinishObject(string tag, MovingObject obj){
             // Debug.Log("addFinishObject: " + tag);
 
@@ -55,7 +57,52 @@ namespace Assets.Scripts
             globalLight = GameObject.Find("Global Light").GetComponent<Light2D>();
             aStarPath = GameObject.FindObjectOfType<AstarPath>();
 
+        }
+
+        public static async void ShowFirstScreen()
+        {
+
             LoadNextLevel();
+
+            player.GetComponentInChildren<Light2D>().intensity = 0f;
+            player.gameObject.SetActive(false);
+
+            var dstLst = GameObject.FindGameObjectsWithTag("OriginLocation");
+
+            for (int i = 0; i < dstLst.Length; i++)
+            {
+                var dst = dstLst[i];
+                if (dst.TryGetComponent<OriginLocation>(out OriginLocation originLocation))
+                {
+                    originLocation.gameObject.SetActive(false);
+                }
+            }
+
+            await Task.Delay(3000);
+            
+            GameManager.LightOff();
+
+            await Task.Delay(6000);
+
+            AudioManager.PlayBGM("bgm");
+            player.GetComponentInChildren<Light2D>().intensity = 0f;
+            player.gameObject.SetActive(true);
+
+            await Task.Delay(500);
+
+            AudioManager.PlaySFX("flashlight");
+            player.GetComponentInChildren<Light2D>().intensity = Config.PLAYER_LIGHT_INTENSITY;
+
+            await Task.Delay(2000);
+
+            for (int i = 0; i < dstLst.Length; i++)
+            {
+                var dst = dstLst[i];
+                if (dst.TryGetComponent<OriginLocation>(out OriginLocation originLocation))
+                {
+                    originLocation.gameObject.SetActive(true);
+                }
+            }
 
         }
 
@@ -66,7 +113,7 @@ namespace Assets.Scripts
 
             if (levelObj != null)
             {
-                GameObject.Destroy(levelObj);
+                GameObject.DestroyImmediate(levelObj);
             }
 
             var levelObjPrefab = Resources.Load<GameObject>("Prefabs/Level" + currentLevel);
@@ -98,22 +145,33 @@ namespace Assets.Scripts
             ILevel newLevel = new Level();
             newLevel.LoadLevel(1, movingObjList, originLocationList);
             levelMap[currentLevel] = newLevel;
+            level = newLevel;
 
             isTransitioning = false;
         }
 
         public static void LightOn()
         {
-            AudioManager.PlaySFX("switch");
+            if (lightOn) return;
+
+            lightOn = true;
+            //AudioManager.PlaySFX("switch");
             globalLight.intensity = 0.5f;
             player.GetComponentInChildren<Light2D>().intensity = 0f;
+
+            level.GetMovingObjects().ForEach(movingobj => movingobj.OnSpot());
         }
 
         public static void LightOff()
         {
+            if (!lightOn) return;
+
+            lightOn = false;
             AudioManager.PlaySFX("switch");
             globalLight.intensity = 0f;
-            player.GetComponentInChildren<Light2D>().intensity = 1f;
+            player.GetComponentInChildren<Light2D>().intensity = Config.PLAYER_LIGHT_INTENSITY;
+
+            level.GetMovingObjects().ForEach(movingobj => movingobj.OnUnspot());
         }
         
         public static void Win(){

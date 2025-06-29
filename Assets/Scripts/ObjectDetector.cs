@@ -50,6 +50,7 @@ namespace Assets.Scripts
             if (collision.gameObject.tag != Config.TAG_MOVING_OBJECT) { return; }
             
             var obj = collision.GetComponent<MovingObject>();
+
             obj.OnUnspot();
             obj_inRange.Remove(obj);    
         }

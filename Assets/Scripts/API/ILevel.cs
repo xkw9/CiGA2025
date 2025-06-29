@@ -21,5 +21,7 @@ namespace Assets.Scripts.API
 
         public void removeFinishObject(string tag, MovingObject obj);
 
+        public List<MovingObject> GetMovingObjects();
+
     }
 }

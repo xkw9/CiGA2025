@@ -6,12 +6,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
+using UnityEditor;
 
 namespace Assets.Scripts
 {
     public class MovingObject : MonoBehaviour
     {
-
+        [SerializeField]
+        float mass = 10;
         [SerializeField]
         float sleepingTime = 5;
         [SerializeField]
@@ -23,14 +25,16 @@ namespace Assets.Scripts
 
         [SerializeField]
         protected Color textColor;
+        [SerializeField]
+        float fontSize = 1;
 
         public bool atTargetLocation = false;
         Rigidbody2D rb;
         ObjectPathSeeker pathSeeker;
 
-        CountdownText countdownText;
+        protected CountdownText countdownText;
 
-        SpriteRenderer outLine;
+        protected SpriteRenderer outLine;
 
         float timeLastSeen = 0;
         float timeStartMove = 0;
@@ -51,23 +55,35 @@ namespace Assets.Scripts
             rb = GetComponent<Rigidbody2D>();
             pathSeeker = GetComponentInChildren<ObjectPathSeeker>();
             countdownText.SetColor(textColor);
+            countdownText.SetFontSize(fontSize);
             outLine = transform.Find("OutLine").GetComponent<SpriteRenderer>();
             outLine.color = textColor;
-            outLine.gameObject.SetActive(false);
+            outLine.gameObject.SetActive(true);
+            countdownText.gameObject.SetActive(true);
         }
 
         protected virtual void Update()
         {
             UnityEngine.Debug.Log("Update state:" + state);
+
             if (state == ObjectState.DONE)
             {
                 // never move if Done
+                countdownText.Hide();
+                outLine.gameObject.SetActive(false);
                 return;
             }
+            
+            if (GameManager.lightOn)
+            {
+                OnSpot();
+            }
+
             if (state == ObjectState.ALIVE)
             {
                 if (!isMoving)
                 {
+                    GameManager.AudioManager.PlaySFX("drag" + UnityEngine.Random.Range(0, 5));
                     UpdateFace(-1);
                     isMoving = true;
                     timeStartMove = Time.time;
@@ -86,11 +102,7 @@ namespace Assets.Scripts
             if (state == ObjectState.SLEEPING && !spotted)
             {
                 float rstTime = sleepingTime - (Time.time - timeLastSeen);
-
-                if (rstTime <= Config.OBJECT_WAKE_TIME)
-                {
-                    UpdateFace(rstTime);
-                }
+                UpdateFace(rstTime);
 
             }
 
@@ -128,12 +140,21 @@ namespace Assets.Scripts
 
         public void OnSpot()
         {
+            if (countdownText != null)
+            {
+                countdownText.Hide();
+            }
+
+            if (outLine != null)
+            {
+                outLine.gameObject.SetActive(false);
+            }
+            
             if (state == ObjectState.DONE)
             {
                 return;
             }
-            countdownText.Hide();
-            outLine.gameObject.SetActive(false);
+
             timeLastSeen = Time.time;
             spotted = true;
             isMoving = false;
@@ -153,10 +174,12 @@ namespace Assets.Scripts
 
         public void OnUnspot()
         {
+            if (state == ObjectState.PICKED_UP) return;
+
             spotted = false;
             outLine.gameObject.SetActive(true);
             countdownText.Show();
-            countdownText.SetText("-_-");
+            UpdateFace(float.PositiveInfinity);
             UnityEngine.Debug.Log("Unspotted " + name);
         }
 
@@ -184,10 +207,9 @@ namespace Assets.Scripts
             }
             UnityEngine.Debug.Log("Picked up object: " + gameObject.name);
 
-            GameManager.AudioManager.PlaySFX("carry_short");
+            //GameManager.AudioManager.PlaySFX("carry_short");
 
-            rb.bodyType = RigidbodyType2D.Dynamic;
-            rb.velocity = Vector2.zero;
+            Free();
             state = ObjectState.PICKED_UP;
             
             var joint = gameObject.AddComponent<FixedJoint2D>();
@@ -197,13 +219,12 @@ namespace Assets.Scripts
         public void Release(Player player)
         {
             UnityEngine.Debug.Log("Released object: " + gameObject.name);
-            
-            rb.bodyType = RigidbodyType2D.Static;
+
+            rb.velocity = Vector2.zero;
+            rb.mass = float.MaxValue;
             state = ObjectState.SLEEPING;
             timeLastSeen = Time.time;
-            if (atTargetLocation){
-                GameManager.AudioManager.PlaySFX("drop_short");
-            }
+            GameManager.AudioManager.PlaySFX("drop_short");
             Destroy(GetComponent<FixedJoint2D>());
 
         }
@@ -212,14 +233,25 @@ namespace Assets.Scripts
         {
             UnityEngine.Debug.Log(objName + " before Done: " + state);
             state = ObjectState.DONE;
-            countdownText.Hide();
-            outLine.gameObject.SetActive(false);
+            if (countdownText != null)
+            {
+                countdownText.Hide();
+            }
+
+            if (outLine != null)
+            {
+                outLine.gameObject.SetActive(false);
+            }
+
             UnityEngine.Debug.Log(objName + " Done: " + state);
         }
 
         public void Move()
         {
-            rb.bodyType = RigidbodyType2D.Dynamic; // make sure we can move
+            if (rb.mass > 100000)
+            {
+                Free();
+            }
 
             if (Time.time - timeStartMove > Config.OBJECT_MOVE_TIME)
             {
@@ -256,8 +288,15 @@ namespace Assets.Scripts
         {
             isMoving = false;
             state = ObjectState.SLEEPING;
-            rb.bodyType = RigidbodyType2D.Static; // stop moving
+            rb.velocity = Vector2.zero;
+            rb.mass = float.MaxValue; // freeze the object
 
+        }
+
+        public void Free()
+        {
+            rb.velocity = Vector2.zero;
+            rb.mass = mass; 
         }
 
         public enum ObjectState

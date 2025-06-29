@@ -41,6 +41,11 @@ namespace Assets.Scripts
             tmp.color = color;
         }
 
+        public void SetFontSize(float size)
+        {
+            tmp.fontSize = size;
+        }
+
         public void Show()
         {
             transform.position = obj.transform.position + offset.toVec3();
@@ -49,7 +54,10 @@ namespace Assets.Scripts
 
         public void Hide()
         {
-            gameObject.SetActive(false);
+            if (gameObject != null)
+            {
+                gameObject.SetActive(false);
+            }
         }
 
         public void SetOffset(Vector2 offset)

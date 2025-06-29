@@ -64,7 +64,7 @@ namespace Assets
 
         public void Win(){
             Debug.Log("win!");
-            GameManager.AudioManager.PlaySFX("drop_right_short");
+            GameManager.AudioManager.PlaySFX("bell");
             for (int i = 0; i < movingObjList.Count; i++)
             {
                 movingObjList[i].Done();
@@ -82,9 +82,22 @@ namespace Assets
 
         public async void GoToNextLevel()
         {
+            GameManager.player.gameObject.SetActive(false);
+
             await Task.Delay(3000);
             GameManager.LightOff();
             GameManager.LoadNextLevel();
+
+            await Task.Delay(2000);
+            GameManager.AudioManager.PlaySFX("flashlight");
+            GameManager.player.transform.position = new Vector3(13, 7, 0);
+            GameManager.player.gameObject.SetActive(true);
+
+        }
+
+        public List<MovingObject> GetMovingObjects()
+        {
+            return movingObjList;
         }
     }
 }

@@ -10,9 +10,9 @@ namespace Assets.Scripts
 {
     public class FaceManager
     {
-        static List<string> eyes = new() { "-", "o", "O" };
+        static List<string> eyes = new() { "-", "o", "0" };
 
-        static List<string> wakingFaces = new() { "OvO", "OwO", "OAO", "O3O" };
+        static List<string> wakingFaces = new() { "0v0", "0w0", "0A0", "030" };
 
         int leftLv = 0, rightLv = 0;
         int lv;

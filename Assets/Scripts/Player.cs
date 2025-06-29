@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.Rendering.Universal;
 using Assets.Scripts.Utils;
 using Assets.Scripts;
+using Unity.VisualScripting;
 
 public class Player : MonoBehaviour
 {
@@ -17,8 +18,8 @@ public class Player : MonoBehaviour
 
     CountdownText leftEye, rightEye;
 
-    static Vector2 leftEyeOffset = new Vector2(-0.2f, 0);
-    static Vector2 rightEyeOffset = new Vector2(0.2f, 0);
+    static Vector2 leftEyeOffset = new Vector2(-0.3f, 0);
+    static Vector2 rightEyeOffset = new Vector2(0.3f, 0);
 
     static float eyeRadius = 0.1f;
 
@@ -106,6 +107,20 @@ public class Player : MonoBehaviour
                 state = PlayerState.NORMAL;
             }
         }
+
+
+    }
+
+    private void OnDisable()
+    {
+        leftEye.gameObject.SetActive(false);
+        rightEye.gameObject.SetActive(false);
+    }
+
+    private void OnEnable()
+    {
+        leftEye.gameObject.SetActive(true);
+        rightEye.gameObject.SetActive(true);
     }
 
     public enum PlayerState
