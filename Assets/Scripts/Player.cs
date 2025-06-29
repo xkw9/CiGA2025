@@ -43,7 +43,15 @@ public class Player : MonoBehaviour
     void Update()
     {
         //GatherInput();
-        HandleInput();
+        if (GameManager.isTransitioning)
+        {
+            state = PlayerState.FREEZE;
+            rb.velocity = Vector2.zero;
+            return;
+        } else
+        {
+            HandleInput();
+        }
     }
 
     void HandleInput()
@@ -93,6 +101,9 @@ public class Player : MonoBehaviour
                     state = PlayerState.CARRYING;
                 }
 
+            } else if (state == PlayerState.FREEZE)
+            {
+                state = PlayerState.NORMAL;
             }
         }
     }
@@ -102,6 +113,7 @@ public class Player : MonoBehaviour
 
         NORMAL,
         CARRYING,
+        FREEZE,
 
     }
 }
