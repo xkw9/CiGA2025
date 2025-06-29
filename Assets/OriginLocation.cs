@@ -28,8 +28,8 @@ public class OriginLocation : MonoBehaviour
         if (obj != null){
             string objName = obj.objName;
             if (targetSqTag == obj.objName){
-                obj.atTargetLocation = true;
-                GameManager.addFinishObject(objName, obj);
+                //obj.atTargetLocation = true;
+                //GameManager.addFinishObject(objName, obj);
                 Debug.Log($"enter {objName} 的触发区域");
             }
         }
@@ -43,8 +43,32 @@ public class OriginLocation : MonoBehaviour
             string objName = obj.objName;
             if (targetSqTag == obj.objName){
                 obj.atTargetLocation = true;
-                // GameManager.addFinishObject(objName, obj);
-                Debug.Log($"stay {objName} 的触发区域");
+                
+                Bounds boundsA = col.bounds;
+                Bounds boundsB = obj.GetComponent<Collider2D>().bounds;
+
+
+                Bounds intersection = new Bounds();
+                intersection.SetMinMax(
+                    Vector3.Max(boundsA.min, boundsB.min),
+                    Vector3.Min(boundsA.max, boundsB.max));
+
+                float intersectionVolume = intersection.size.x * intersection.size.y;
+                float volumeA = boundsA.size.x * boundsA.size.y;
+
+                float factor = intersectionVolume / volumeA;
+
+                if (factor > 0.8)
+                {
+                    obj.atTargetLocation = true;
+                    GameManager.addFinishObject(objName, obj);
+                } else
+                {
+                    obj.atTargetLocation = false;
+                    GameManager.removeFinishObject(objName, obj);
+                }
+
+
             }
         }
     }
@@ -58,8 +82,8 @@ public class OriginLocation : MonoBehaviour
             string objName = obj.objName;
             if (targetSqTag == obj.objName){
                 Debug.Log($"命中 {obj.objName} exit");
-                obj.atTargetLocation = false;
-                GameManager.removeFinishObject(objName, obj);
+                //obj.atTargetLocation = false;
+                //GameManager.removeFinishObject(objName, obj);
                 Debug.Log($"exit {objName} 的触发区域");
             }
 

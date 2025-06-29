@@ -30,6 +30,8 @@ namespace Assets.Scripts
 
         CountdownText countdownText;
 
+        SpriteRenderer outLine;
+
         float timeLastSeen = 0;
         float timeStartMove = 0;
         public ObjectState state = ObjectState.SLEEPING;
@@ -49,6 +51,9 @@ namespace Assets.Scripts
             rb = GetComponent<Rigidbody2D>();
             pathSeeker = GetComponentInChildren<ObjectPathSeeker>();
             countdownText.SetColor(textColor);
+            outLine = transform.Find("OutLine").GetComponent<SpriteRenderer>();
+            outLine.color = textColor;
+            outLine.gameObject.SetActive(false);
         }
 
         protected virtual void Update()
@@ -85,9 +90,6 @@ namespace Assets.Scripts
                 if (rstTime <= Config.OBJECT_WAKE_TIME)
                 {
                     UpdateFace(rstTime);
-                } else
-                {
-                    countdownText.Hide();
                 }
 
             }
@@ -119,7 +121,9 @@ namespace Assets.Scripts
 
             countdownText.Show();
             countdownText.SetText(faceManager.getFace());
-        
+
+            outLine.gameObject.SetActive(true);
+
         }
 
         public void OnSpot()
@@ -129,6 +133,7 @@ namespace Assets.Scripts
                 return;
             }
             countdownText.Hide();
+            outLine.gameObject.SetActive(false);
             timeLastSeen = Time.time;
             spotted = true;
             isMoving = false;
@@ -149,6 +154,9 @@ namespace Assets.Scripts
         public void OnUnspot()
         {
             spotted = false;
+            outLine.gameObject.SetActive(true);
+            countdownText.Show();
+            countdownText.SetText("-_-");
             UnityEngine.Debug.Log("Unspotted " + name);
         }
 
@@ -204,6 +212,8 @@ namespace Assets.Scripts
         {
             UnityEngine.Debug.Log(objName + " before Done: " + state);
             state = ObjectState.DONE;
+            countdownText.Hide();
+            outLine.gameObject.SetActive(false);
             UnityEngine.Debug.Log(objName + " Done: " + state);
         }
 

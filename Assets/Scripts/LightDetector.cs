@@ -51,7 +51,7 @@ namespace Assets.Scripts
                 {
                     var col = rayhit.collider;
                     if (col == null) continue;
-                    if (col.CompareTag(Config.TAG_PLAYER))
+                    if (col.CompareTag(Config.TAG_PLAYER) || col.CompareTag(Config.TAG_ORIGINLOCATION))
                     {
                         continue;
                     } else if (col.CompareTag(Config.TAG_MOVING_OBJECT))

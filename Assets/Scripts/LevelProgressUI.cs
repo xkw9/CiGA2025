@@ -62,6 +62,7 @@ namespace Assets.Scripts
                 if (WinChecker != null)
                 {
                     StopCoroutine(WinChecker);
+                    GameManager.AudioManager.Mute();
                 }
             }
 
@@ -75,6 +76,7 @@ namespace Assets.Scripts
                 isCounting = true;
                 countdownText.gameObject.SetActive(true);
                 WinChecker = StartCoroutine(WinCheckerCoroutine());
+                GameManager.AudioManager.PlaySFX("tick_tock");
             }
         }
 
