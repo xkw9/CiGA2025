@@ -145,8 +145,8 @@ public class Player : MonoBehaviour
 
     private void OnEnable()
     {
-        leftEye.gameObject.SetActive(true);
-        rightEye.gameObject.SetActive(true);
+        leftEye?.gameObject.SetActive(true);
+        rightEye?.gameObject.SetActive(true);
     }
 
     public enum PlayerState

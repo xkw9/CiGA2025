@@ -167,7 +167,7 @@ Transform:
   m_GameObject: {fileID: 1472765213254777015}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.0214, y: 0.0312, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -219,7 +219,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 2
-  m_Size: {x: 2.454315, y: 6.2861323}
+  m_Size: {x: 2.458773, y: 6.3396297}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -335,11 +335,11 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 7241275436922745866}
   - {fileID: 5609099430619470453}
   - {fileID: 5616551301282395864}
   - {fileID: 8888416233277078477}
   - {fileID: 4288827029237111495}
+  - {fileID: 7241275436922745866}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &3946195595104587017
@@ -500,7 +500,7 @@ MonoBehaviour:
   - {x: -1.0261016, y: -3.1213298, z: 0}
   m_ShapePathHash: -2116581933
   m_Mesh: {fileID: 0}
-  m_InstanceId: 39178
+  m_InstanceId: 48086
   m_LocalBounds:
     m_Center: {x: 0.004354477, y: 0.012899876, z: 0}
     m_Extent: {x: 1.2104249, y: 3.1385317, z: 0}
