@@ -102,13 +102,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1467269326369810700}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.61, y: 0.61, z: 0.61}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 2655305123728696618}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
 --- !u!212 &8905463793535941853
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -150,7 +150,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: -857750004, guid: e08de3ae00768784a97173be5282b525, type: 3}
+  m_Sprite: {fileID: -344644020, guid: e08de3ae00768784a97173be5282b525, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -258,11 +258,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39835dd652755644ea997ef4dc726e92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mass: 10
   sleepingTime: 5
   movingSpeed: 3
   level: 0
   objName: goal_1
   textColor: {r: 0.7294118, g: 0.8588236, b: 0.08627451, a: 1}
+  fontSize: 1
   atTargetLocation: 0
   state: 0
   spotted: 0
@@ -328,7 +330,7 @@ MonoBehaviour:
   - {x: -4.279963, y: -2.2873743, z: 0}
   m_ShapePathHash: -440599788
   m_Mesh: {fileID: 0}
-  m_InstanceId: 128808
+  m_InstanceId: 34504
   m_LocalBounds:
     m_Center: {x: 0.00876379, y: 0.004947424, z: 0}
     m_Extent: {x: 4.3933697, y: 2.2923217, z: 0}
