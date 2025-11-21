@@ -187,9 +187,9 @@ Transform:
   m_GameObject: {fileID: 6403276100545320833}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.832, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 3, y: 3, z: 3}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 5569563292947824482}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -263,7 +263,7 @@ MonoBehaviour:
     m_CategoryList:
     - m_Name: Check
       m_Hash: 0
-      m_Sprite: {fileID: 21300000, guid: 65b67133752109148a3ed7ccbb424231, type: 3}
+      m_Sprite: {fileID: 0}
     - m_Name: Carried
       m_Hash: 0
       m_Sprite: {fileID: 21300000, guid: d3cd954d3a7a52d438dbf5bc184f28c8, type: 3}
@@ -552,7 +552,7 @@ MonoBehaviour:
   - {x: 1.017622, y: -2.532209, z: 0}
   m_ShapePathHash: -1107715541
   m_Mesh: {fileID: 0}
-  m_InstanceId: 35958
+  m_InstanceId: 45230
   m_LocalBounds:
     m_Center: {x: -0.0012663603, y: 0.021100044, z: 0}
     m_Extent: {x: 1.3603181, y: 2.559588, z: 0}

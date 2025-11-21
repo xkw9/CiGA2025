@@ -10,11 +10,12 @@ namespace Assets.Scripts
 {
     public class ObjectIndicator : MonoBehaviour
     {
-
+        SpriteRenderer SpriteRenderer;
         SpriteResolver SpriteResolver;
         MovingObject movingObject;
         private void Start()
         {
+            SpriteRenderer = GetComponent<SpriteRenderer>();
             SpriteResolver = GetComponent<SpriteResolver>();
             movingObject = GetComponentInParent<MovingObject>();
         }
@@ -40,6 +41,8 @@ namespace Assets.Scripts
             }
 
             transform.rotation = Quaternion.Euler(0, 0, 0); // Reset rotation to avoid rotation issues
+            SpriteRenderer.color = movingObject.Color;
+
         }
 
     }

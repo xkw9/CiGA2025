@@ -29,9 +29,9 @@ Transform:
   m_GameObject: {fileID: 1267740882117445636}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.5, y: 1.05, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 3, y: 3, z: 3}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 288787262486667495}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -105,7 +105,7 @@ MonoBehaviour:
     m_CategoryList:
     - m_Name: Check
       m_Hash: 0
-      m_Sprite: {fileID: 21300000, guid: 65b67133752109148a3ed7ccbb424231, type: 3}
+      m_Sprite: {fileID: 0}
     - m_Name: Carried
       m_Hash: 0
       m_Sprite: {fileID: 21300000, guid: d3cd954d3a7a52d438dbf5bc184f28c8, type: 3}
@@ -399,11 +399,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39835dd652755644ea997ef4dc726e92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mass: 10
   sleepingTime: 5
   movingSpeed: 3
   level: 0
   objName: goal_4
   textColor: {r: 0.10980393, g: 1, b: 0.18039216, a: 1}
+  fontSize: 1
   atTargetLocation: 0
   state: 0
   spotted: 0
@@ -498,7 +500,7 @@ MonoBehaviour:
   - {x: -1.0261016, y: -3.1213298, z: 0}
   m_ShapePathHash: -2116581933
   m_Mesh: {fileID: 0}
-  m_InstanceId: 125432
+  m_InstanceId: 39178
   m_LocalBounds:
     m_Center: {x: 0.004354477, y: 0.012899876, z: 0}
     m_Extent: {x: 1.2104249, y: 3.1385317, z: 0}

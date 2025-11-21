@@ -43,6 +43,8 @@ namespace Assets.Scripts
         public bool spotted = false;
         public bool isMoving = false;
 
+        public Color Color => outLine.color;
+
         FaceManager faceManager = new();
 
         protected virtual void Awake()
@@ -147,7 +149,14 @@ namespace Assets.Scripts
 
             if (outLine != null)
             {
-                outLine.gameObject.SetActive(false);
+                if (state != ObjectState.PICKED_UP)
+                {
+                    outLine.gameObject.SetActive(false);
+                } else
+                {
+                    // show the outline if picked up
+                    outLine.gameObject.SetActive(true);
+                }
             }
             
             if (state == ObjectState.DONE)
@@ -214,6 +223,8 @@ namespace Assets.Scripts
             
             var joint = gameObject.AddComponent<FixedJoint2D>();
             joint.connectedBody = player.GetComponent<Rigidbody2D>();
+
+            outLine.gameObject.SetActive(true);
         }
 
         public void Release(Player player)
@@ -225,7 +236,12 @@ namespace Assets.Scripts
             state = ObjectState.SLEEPING;
             timeLastSeen = Time.time;
             GameManager.AudioManager.PlaySFX("drop_short");
+            outLine.gameObject.SetActive(false);
             Destroy(GetComponent<FixedJoint2D>());
+
+            // refresh to avoid detector not finding this object.
+            gameObject.SetActive(false);
+            gameObject.SetActive(true);
 
         }
 

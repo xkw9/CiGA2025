@@ -61,6 +61,7 @@ public class OriginLocation : MonoBehaviour
                 if (factor > 0.8)
                 {
                     obj.atTargetLocation = true;
+                    
                     GameManager.addFinishObject(objName, obj);
                 } else
                 {
@@ -88,6 +89,16 @@ public class OriginLocation : MonoBehaviour
             }
 
         }
+    }
+
+    void OnEnter(MovingObject obj)
+    {
+
+    }
+
+    void OnLeave(MovingObject obj)
+    {
+
     }
 
 }
