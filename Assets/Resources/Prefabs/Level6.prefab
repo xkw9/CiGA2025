@@ -1354,7 +1354,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 61385034335776399, guid: 8d02127cf2088754d9800aee1d23d9f1, type: 3}
       propertyPath: m_InstanceId
-      value: -1558332
+      value: -42322
+      objectReference: {fileID: 0}
+    - target: {fileID: 340889926451636573, guid: 8d02127cf2088754d9800aee1d23d9f1, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.64
+      objectReference: {fileID: 0}
+    - target: {fileID: 340889926451636573, guid: 8d02127cf2088754d9800aee1d23d9f1, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 5569563292947824482, guid: 8d02127cf2088754d9800aee1d23d9f1, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1451,6 +1459,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 6215868525194227624}
     m_Modifications:
+    - target: {fileID: 1182241473198823230, guid: 697910fd2a0c3c64a8000bd8fb0212fa, type: 3}
+      propertyPath: m_SortingOrder
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 2216685618754170250, guid: 697910fd2a0c3c64a8000bd8fb0212fa, type: 3}
       propertyPath: m_Name
       value: Sofa1
@@ -1497,7 +1509,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7768325428491746665, guid: 697910fd2a0c3c64a8000bd8fb0212fa, type: 3}
       propertyPath: m_InstanceId
-      value: -1558474
+      value: -42232
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1519,7 +1531,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4468908378919515102, guid: f62684e5d623cb24b9d4f23ce7a6b98a, type: 3}
       propertyPath: m_InstanceId
-      value: -1558426
+      value: -42138
       objectReference: {fileID: 0}
     - target: {fileID: 6018197770055712530, guid: f62684e5d623cb24b9d4f23ce7a6b98a, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1560,6 +1572,10 @@ PrefabInstance:
     - target: {fileID: 6018197770055712530, guid: f62684e5d623cb24b9d4f23ce7a6b98a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7328310306927264936, guid: f62684e5d623cb24b9d4f23ce7a6b98a, type: 3}
+      propertyPath: m_SortingOrder
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7717048725611544092, guid: f62684e5d623cb24b9d4f23ce7a6b98a, type: 3}
       propertyPath: m_Name
@@ -1658,13 +1674,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 90
       objectReference: {fileID: 0}
+    - target: {fileID: 3618211180031564637, guid: d09cf23a84481df4b89da0b35cf77c1f, type: 3}
+      propertyPath: m_SortingOrder
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 4367755436601893353, guid: d09cf23a84481df4b89da0b35cf77c1f, type: 3}
       propertyPath: m_Name
       value: Sofa2
       objectReference: {fileID: 0}
     - target: {fileID: 5301017615299424522, guid: d09cf23a84481df4b89da0b35cf77c1f, type: 3}
       propertyPath: m_InstanceId
-      value: -1558380
+      value: -42184
+      objectReference: {fileID: 0}
+    - target: {fileID: 5616551301282395864, guid: d09cf23a84481df4b89da0b35cf77c1f, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.27
+      objectReference: {fileID: 0}
+    - target: {fileID: 5616551301282395864, guid: d09cf23a84481df4b89da0b35cf77c1f, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 4469046616697474124, guid: d09cf23a84481df4b89da0b35cf77c1f, type: 3}
@@ -1717,6 +1745,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 6215868525194227624}
     m_Modifications:
+    - target: {fileID: 1182241473198823230, guid: 697910fd2a0c3c64a8000bd8fb0212fa, type: 3}
+      propertyPath: m_SortingOrder
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 2216685618754170250, guid: 697910fd2a0c3c64a8000bd8fb0212fa, type: 3}
       propertyPath: m_Name
       value: Sofa1
@@ -1763,7 +1795,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7768325428491746665, guid: 697910fd2a0c3c64a8000bd8fb0212fa, type: 3}
       propertyPath: m_InstanceId
-      value: -1558288
+      value: -42092
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 2043336285468934191, guid: 697910fd2a0c3c64a8000bd8fb0212fa, type: 3}
@@ -1816,6 +1848,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 6215868525194227624}
     m_Modifications:
+    - target: {fileID: 1182241473198823230, guid: 697910fd2a0c3c64a8000bd8fb0212fa, type: 3}
+      propertyPath: m_SortingOrder
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 2216685618754170250, guid: 697910fd2a0c3c64a8000bd8fb0212fa, type: 3}
       propertyPath: m_Name
       value: Sofa1 (1)
@@ -1862,7 +1898,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7768325428491746665, guid: 697910fd2a0c3c64a8000bd8fb0212fa, type: 3}
       propertyPath: m_InstanceId
-      value: -1558520
+      value: -42278
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 2043336285468934191, guid: 697910fd2a0c3c64a8000bd8fb0212fa, type: 3}

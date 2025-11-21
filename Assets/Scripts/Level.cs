@@ -82,6 +82,7 @@ namespace Assets
 
         public async void GoToNextLevel()
         {
+            GameManager.player.ForceRelease();
             GameManager.player.gameObject.SetActive(false);
 
             await Task.Delay(3000);
@@ -90,7 +91,7 @@ namespace Assets
 
             await Task.Delay(2000);
             GameManager.AudioManager.PlaySFX("flashlight");
-            GameManager.player.transform.position = new Vector3(13, 7, 0);
+            GameManager.player.transform.position = new Vector3(-13, 7, 0);
             GameManager.player.gameObject.SetActive(true);
 
         }

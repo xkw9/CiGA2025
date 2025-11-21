@@ -233,7 +233,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 2
+  m_SortingOrder: 3
   m_Sprite: {fileID: 0}
   m_Color: {r: 0, g: 1, b: 0.022976637, a: 1}
   m_FlipX: 0
@@ -552,7 +552,7 @@ MonoBehaviour:
   - {x: 1.017622, y: -2.532209, z: 0}
   m_ShapePathHash: -1107715541
   m_Mesh: {fileID: 0}
-  m_InstanceId: 135286
+  m_InstanceId: 35958
   m_LocalBounds:
     m_Center: {x: -0.0012663603, y: 0.021100044, z: 0}
     m_Extent: {x: 1.3603181, y: 2.559588, z: 0}
@@ -568,11 +568,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39835dd652755644ea997ef4dc726e92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mass: 10
   sleepingTime: 3
   movingSpeed: 8
   level: 0
   objName: goal_2
   textColor: {r: 0.3372549, g: 0.33333334, b: 0.9960785, a: 1}
+  fontSize: 1
   atTargetLocation: 0
   state: 0
   spotted: 0

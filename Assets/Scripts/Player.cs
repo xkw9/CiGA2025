@@ -25,6 +25,8 @@ public class Player : MonoBehaviour
 
     PlayerState state;
 
+    float deg = 0;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -66,6 +68,18 @@ public class Player : MonoBehaviour
 
         Vector3 mousePos = Input.mousePosition;
         Vector3 worldPos = Camera.main.ScreenToWorldPoint(mousePos);
+
+        if (Input.GetKey(KeyCode.N))
+        {
+            deg += 2 * Time.deltaTime;
+        }
+
+        if (Input.GetKey(KeyCode.M))
+        {
+            deg -= 2 * Time.deltaTime;
+        }
+
+        //Vector2 playerToMouse = new Vector2(Mathf.Sin(deg), Mathf.Cos(deg));
 
         Vector2 playerToMouse = (transform.position.toVec2() - worldPos.toVec2()).normalized;
 
@@ -109,6 +123,18 @@ public class Player : MonoBehaviour
         }
 
 
+    }
+
+    public void ForceRelease()
+    {
+        if (objCarried != null)
+        {
+            // already carrying a object
+            // release it
+            objCarried.Release(this);
+            objCarried = null;
+            state = PlayerState.NORMAL;
+        }
     }
 
     private void OnDisable()

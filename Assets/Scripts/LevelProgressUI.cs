@@ -62,7 +62,7 @@ namespace Assets.Scripts
                 if (WinChecker != null)
                 {
                     StopCoroutine(WinChecker);
-                    GameManager.AudioManager.Mute();
+                    GameManager.AudioManager.StopSFX();
                 }
             }
 

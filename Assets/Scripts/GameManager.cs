@@ -78,7 +78,7 @@ namespace Assets.Scripts
                 }
             }
 
-            await Task.Delay(3000);
+            await Task.Delay(5000);
             
             GameManager.LightOff();
 

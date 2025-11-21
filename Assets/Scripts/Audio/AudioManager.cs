@@ -68,6 +68,11 @@ namespace Assets.Audio
             StopBGM(transitionTime);
         }
 
+        public void StopSFX()
+        {
+            SFXPlayer.Stop();
+        }
+
         public void PlaySFX(string clip_name)
         {
             AudioClip clip = LoadClip(clip_name);
