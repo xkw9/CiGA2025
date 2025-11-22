@@ -98,7 +98,7 @@ namespace Assets.Scripts
             welcomeText.SetActive(false);
             GameManager.LightOff();
 
-            await Task.Delay(6000);
+            await Task.Delay(3000);
 
             AudioManager.PlayBGM("bgm");
             player.GetComponentInChildren<Light2D>().intensity = 0f;
