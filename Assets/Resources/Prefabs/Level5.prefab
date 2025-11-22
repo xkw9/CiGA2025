@@ -1025,7 +1025,7 @@ Tilemap:
     m_Data: {r: 1, g: 1, b: 1, a: 1}
   m_TileObjectToInstantiateArray: []
   m_AnimationFrameRate: 1
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 0}
   m_Origin: {x: -15, y: -10, z: 0}
   m_Size: {x: 31, y: 19, z: 1}
   m_TileAnchor: {x: 0.5, y: 0.5, z: 0}
@@ -1414,7 +1414,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7768325428491746665, guid: 697910fd2a0c3c64a8000bd8fb0212fa, type: 3}
       propertyPath: m_InstanceId
-      value: -50872
+      value: -83920
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1434,6 +1434,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 7845402811403428069}
     m_Modifications:
+    - target: {fileID: 2121703051314904777, guid: 536b324e0a785cd4b9e58d6680a6b050, type: 3}
+      propertyPath: m_SortingOrder
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 3188626235389244371, guid: 536b324e0a785cd4b9e58d6680a6b050, type: 3}
       propertyPath: m_LocalPosition.x
       value: -12.629
@@ -1474,6 +1478,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4384613026504055506, guid: 536b324e0a785cd4b9e58d6680a6b050, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.18
+      objectReference: {fileID: 0}
+    - target: {fileID: 4384613026504055506, guid: 536b324e0a785cd4b9e58d6680a6b050, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.19
+      objectReference: {fileID: 0}
     - target: {fileID: 6200892892828534123, guid: 536b324e0a785cd4b9e58d6680a6b050, type: 3}
       propertyPath: m_Name
       value: Sofa1_goal
@@ -1502,7 +1514,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2172879645791233415, guid: 5a05c1c8ac460b8408f24c58c0be6419, type: 3}
       propertyPath: m_InstanceId
-      value: -50824
+      value: -83968
       objectReference: {fileID: 0}
     - target: {fileID: 5306212607498290656, guid: 5a05c1c8ac460b8408f24c58c0be6419, type: 3}
       propertyPath: textColor.b
@@ -1648,7 +1660,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5301017615299424522, guid: d09cf23a84481df4b89da0b35cf77c1f, type: 3}
       propertyPath: m_InstanceId
-      value: -50976
+      value: -83872
       objectReference: {fileID: 0}
     - target: {fileID: 5616551301282395864, guid: d09cf23a84481df4b89da0b35cf77c1f, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1746,7 +1758,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7768325428491746665, guid: 697910fd2a0c3c64a8000bd8fb0212fa, type: 3}
       propertyPath: m_InstanceId
-      value: -50928
+      value: -84030
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1766,6 +1778,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 7845402811403428069}
     m_Modifications:
+    - target: {fileID: 2121703051314904777, guid: 536b324e0a785cd4b9e58d6680a6b050, type: 3}
+      propertyPath: m_SortingOrder
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 3188626235389244371, guid: 536b324e0a785cd4b9e58d6680a6b050, type: 3}
       propertyPath: m_LocalPosition.x
       value: 12.617
@@ -1805,6 +1821,14 @@ PrefabInstance:
     - target: {fileID: 3188626235389244371, guid: 536b324e0a785cd4b9e58d6680a6b050, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4384613026504055506, guid: 536b324e0a785cd4b9e58d6680a6b050, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.18
+      objectReference: {fileID: 0}
+    - target: {fileID: 4384613026504055506, guid: 536b324e0a785cd4b9e58d6680a6b050, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -2.16
       objectReference: {fileID: 0}
     - target: {fileID: 4488151386737421716, guid: 536b324e0a785cd4b9e58d6680a6b050, type: 3}
       propertyPath: m_Color.b

@@ -58,7 +58,7 @@ MonoBehaviour:
   - {x: 14, y: 7.9999704, z: 0}
   m_ShapePathHash: -1866981412
   m_Mesh: {fileID: 0}
-  m_InstanceId: 36540
+  m_InstanceId: 62216
   m_LocalBounds:
     m_Center: {x: 0, y: 0.000014781952, z: 0}
     m_Extent: {x: 14, y: 7.999985, z: 0}
@@ -120,7 +120,7 @@ MonoBehaviour:
   - {x: -14.999971, y: -9, z: 0}
   m_ShapePathHash: -427916818
   m_Mesh: {fileID: 0}
-  m_InstanceId: 36526
+  m_InstanceId: 62202
   m_LocalBounds:
     m_Center: {x: -0.000014305115, y: 0, z: 0}
     m_Extent: {x: 14.999986, y: 9, z: 0}
@@ -1156,7 +1156,7 @@ Tilemap:
     m_Data: {r: 1, g: 1, b: 1, a: 1}
   m_TileObjectToInstantiateArray: []
   m_AnimationFrameRate: 1
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 0}
   m_Origin: {x: -15, y: -10, z: 0}
   m_Size: {x: 31, y: 19, z: 1}
   m_TileAnchor: {x: 0.5, y: 0.5, z: 0}
@@ -1496,6 +1496,18 @@ PrefabInstance:
       propertyPath: m_SortingOrder
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 1494353940018453758, guid: 2d595dce7b83ea24fb58b7ea6103c0c1, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.58
+      objectReference: {fileID: 0}
+    - target: {fileID: 1494353940018453758, guid: 2d595dce7b83ea24fb58b7ea6103c0c1, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.58
+      objectReference: {fileID: 0}
+    - target: {fileID: 1494353940018453758, guid: 2d595dce7b83ea24fb58b7ea6103c0c1, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.58
+      objectReference: {fileID: 0}
     - target: {fileID: 2037054062815126564, guid: 2d595dce7b83ea24fb58b7ea6103c0c1, type: 3}
       propertyPath: m_Name
       value: TV
@@ -1542,7 +1554,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7586468476176430279, guid: 2d595dce7b83ea24fb58b7ea6103c0c1, type: 3}
       propertyPath: m_InstanceId
-      value: -24302
+      value: -239768
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 2224019232702155137, guid: 2d595dce7b83ea24fb58b7ea6103c0c1, type: 3}
@@ -1683,7 +1695,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2172879645791233415, guid: 5a05c1c8ac460b8408f24c58c0be6419, type: 3}
       propertyPath: m_InstanceId
-      value: -24356
+      value: -239814
       objectReference: {fileID: 0}
     - target: {fileID: 5420970647870728261, guid: 5a05c1c8ac460b8408f24c58c0be6419, type: 3}
       propertyPath: m_Name

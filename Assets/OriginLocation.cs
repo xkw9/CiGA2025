@@ -8,12 +8,17 @@ public class OriginLocation : MonoBehaviour
     string targetSqTag = "";
     [SerializeField]
     int level = 0;
+
+    SpriteRenderer flag;
     
     Collider2D col;
     // Start is called before the first frame update
     void Start()
     {
         col = GetComponent<Collider2D>();
+        flag = transform.Find("Flag").GetComponent<SpriteRenderer>();
+        flag.color = GetComponent<SpriteRenderer>().color;
+        flag.gameObject.SetActive(false);
     }
 
     // Update is called once per frame
@@ -61,10 +66,12 @@ public class OriginLocation : MonoBehaviour
                 if (factor > 0.8)
                 {
                     obj.atTargetLocation = true;
+                    OnEnter(obj);
                     GameManager.addFinishObject(objName, obj);
                 } else
                 {
                     obj.atTargetLocation = false;
+                    OnLeave(obj);
                     GameManager.removeFinishObject(objName, obj);
                 }
 
@@ -88,6 +95,16 @@ public class OriginLocation : MonoBehaviour
             }
 
         }
+    }
+
+    void OnEnter(MovingObject obj)
+    {
+        flag.gameObject.SetActive(true);
+    }
+
+    void OnLeave(MovingObject obj)
+    {
+        flag.gameObject.SetActive(false);
     }
 
 }

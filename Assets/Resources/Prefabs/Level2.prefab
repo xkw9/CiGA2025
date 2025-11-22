@@ -1072,7 +1072,7 @@ Tilemap:
     m_Data: {r: 1, g: 1, b: 1, a: 1}
   m_TileObjectToInstantiateArray: []
   m_AnimationFrameRate: 1
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 0}
   m_Origin: {x: -15, y: -10, z: 0}
   m_Size: {x: 31, y: 19, z: 1}
   m_TileAnchor: {x: 0.5, y: 0.5, z: 0}
@@ -1408,7 +1408,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5301017615299424522, guid: d09cf23a84481df4b89da0b35cf77c1f, type: 3}
       propertyPath: m_InstanceId
-      value: -54082
+      value: -247988
       objectReference: {fileID: 0}
     - target: {fileID: 5616551301282395864, guid: d09cf23a84481df4b89da0b35cf77c1f, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1416,7 +1416,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5616551301282395864, guid: d09cf23a84481df4b89da0b35cf77c1f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.09
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1475,6 +1475,10 @@ PrefabInstance:
     - target: {fileID: 3188626235389244371, guid: 536b324e0a785cd4b9e58d6680a6b050, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4384613026504055506, guid: 536b324e0a785cd4b9e58d6680a6b050, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1.21
       objectReference: {fileID: 0}
     - target: {fileID: 6200892892828534123, guid: 536b324e0a785cd4b9e58d6680a6b050, type: 3}
       propertyPath: m_Name
@@ -1548,7 +1552,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7768325428491746665, guid: 697910fd2a0c3c64a8000bd8fb0212fa, type: 3}
       propertyPath: m_InstanceId
-      value: -54130
+      value: -248036
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1570,7 +1574,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 61385034335776399, guid: 8d02127cf2088754d9800aee1d23d9f1, type: 3}
       propertyPath: m_InstanceId
-      value: -54024
+      value: -247834
       objectReference: {fileID: 0}
     - target: {fileID: 5488301562956307949, guid: 8d02127cf2088754d9800aee1d23d9f1, type: 3}
       propertyPath: objName
@@ -1860,7 +1864,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7768325428491746665, guid: 697910fd2a0c3c64a8000bd8fb0212fa, type: 3}
       propertyPath: m_InstanceId
-      value: -53954
+      value: -247940
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1971,6 +1975,10 @@ PrefabInstance:
     - target: {fileID: 8469043802125094705, guid: b40ea4378c0144a4eb26182a360c1df4, type: 3}
       propertyPath: targetSqTag
       value: goal_4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8933910295009896693, guid: b40ea4378c0144a4eb26182a360c1df4, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -3.31
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 using System.Threading.Tasks;
+using System.Linq;
 
 namespace Assets.Scripts
 {
@@ -29,6 +30,11 @@ namespace Assets.Scripts
 
         public static bool isTransitioning = false;
         public static bool lightOn = true;
+
+        public static bool ready = false;
+
+        public static GameObject welcomeText;
+        private static List<GameObject> _tmpdst;
         public static void addFinishObject(string tag, MovingObject obj){
             // Debug.Log("addFinishObject: " + tag);
 
@@ -57,6 +63,8 @@ namespace Assets.Scripts
             globalLight = GameObject.Find("Global Light").GetComponent<Light2D>();
             aStarPath = GameObject.FindObjectOfType<AstarPath>();
 
+            welcomeText = GameObject.Find("welcomeText");
+
         }
 
         public static async void ShowFirstScreen()
@@ -67,9 +75,10 @@ namespace Assets.Scripts
             player.GetComponentInChildren<Light2D>().intensity = 0f;
             player.gameObject.SetActive(false);
 
-            var dstLst = GameObject.FindGameObjectsWithTag("OriginLocation");
+            var dstLst = GameObject.FindGameObjectsWithTag("OriginLocation").ToList();
+            _tmpdst = dstLst;
 
-            for (int i = 0; i < dstLst.Length; i++)
+            for (int i = 0; i < dstLst.Count; i++)
             {
                 var dst = dstLst[i];
                 if (dst.TryGetComponent<OriginLocation>(out OriginLocation originLocation))
@@ -78,8 +87,15 @@ namespace Assets.Scripts
                 }
             }
 
-            await Task.Delay(5000);
-            
+            await Task.Delay(1000);
+
+            ready = true;
+
+        }
+
+        public static async void StartGame() {
+
+            welcomeText.SetActive(false);
             GameManager.LightOff();
 
             await Task.Delay(6000);
@@ -95,7 +111,9 @@ namespace Assets.Scripts
 
             await Task.Delay(2000);
 
-            for (int i = 0; i < dstLst.Length; i++)
+            var dstLst = _tmpdst;
+
+            for (int i = 0; i < dstLst.Count; i++)
             {
                 var dst = dstLst[i];
                 if (dst.TryGetComponent<OriginLocation>(out OriginLocation originLocation))

@@ -10,11 +10,12 @@ namespace Assets.Scripts
 {
     public class ObjectIndicator : MonoBehaviour
     {
-
+        SpriteRenderer SpriteRenderer;
         SpriteResolver SpriteResolver;
         MovingObject movingObject;
         private void Start()
         {
+            SpriteRenderer = GetComponent<SpriteRenderer>();
             SpriteResolver = GetComponent<SpriteResolver>();
             movingObject = GetComponentInParent<MovingObject>();
         }
@@ -27,10 +28,7 @@ namespace Assets.Scripts
                 SpriteResolver.SetCategoryAndLabel("New Category", "None");
             }
 
-            if (movingObject.atTargetLocation)
-            {
-                SpriteResolver.SetCategoryAndLabel("New Category", "Check");
-            } else if (movingObject.state == MovingObject.ObjectState.PICKED_UP)
+            if (movingObject.state == MovingObject.ObjectState.PICKED_UP)
             {
                 SpriteResolver.SetCategoryAndLabel("New Category", "Carried");
             } 
@@ -40,6 +38,8 @@ namespace Assets.Scripts
             }
 
             transform.rotation = Quaternion.Euler(0, 0, 0); // Reset rotation to avoid rotation issues
+            SpriteRenderer.color = movingObject.Color;
+
         }
 
     }
