@@ -100,5 +100,10 @@ namespace Assets
         {
             return movingObjList;
         }
+
+        public void forceGoToNextLevel()
+        {
+            GameManager.levelProgressUI.forceGoToNextLevel();
+        }
     }
 }

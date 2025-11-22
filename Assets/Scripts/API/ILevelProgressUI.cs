@@ -15,5 +15,6 @@ namespace Assets.Scripts.API
 
         public void startCountDown(int seconds);
 
+        public void forceGoToNextLevel();
     }
 }

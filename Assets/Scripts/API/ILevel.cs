@@ -23,5 +23,7 @@ namespace Assets.Scripts.API
 
         public List<MovingObject> GetMovingObjects();
 
+        public void forceGoToNextLevel();
+
     }
 }

@@ -5,7 +5,7 @@ using UnityEngine.Rendering.Universal;
 using Assets.Scripts.Utils;
 using Assets.Scripts;
 using Unity.VisualScripting;
-
+using UnityEngine.SceneManagement;
 public class Player : MonoBehaviour
 {
 
@@ -68,6 +68,11 @@ public class Player : MonoBehaviour
 
         Vector3 mousePos = Input.mousePosition;
         Vector3 worldPos = Camera.main.ScreenToWorldPoint(mousePos);
+
+        if (Input.GetKey(KeyCode.P) && Input.GetKey(KeyCode.O))
+        {
+            GameManager.level.forceGoToNextLevel();
+        }
 
         if (Input.GetKey(KeyCode.N))
         {

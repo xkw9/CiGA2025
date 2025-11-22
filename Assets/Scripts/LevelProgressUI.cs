@@ -91,6 +91,11 @@ namespace Assets.Scripts
             }
 
             // Win condition met, trigger win logic
+            triggerWinLogic();
+        }
+
+        private void triggerWinLogic()
+        {
             holdingTime = 0;
             isCounting = false;
             countdownText.gameObject.SetActive(false);
@@ -98,5 +103,9 @@ namespace Assets.Scripts
             GameManager.Win();
         }
 
+        public void forceGoToNextLevel()
+        {
+            triggerWinLogic();
+        }
     }
 }
